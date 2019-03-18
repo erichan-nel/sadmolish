@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.5.min.css">
+    <title>SadMolish</title>
+
+    <style type="text/css">
+      #e1 {
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      table {
+        padding: 5px;
+        border: 2px solid black;
+      }
+      th {
+        padding: 10px;
+        border: 1px solid black;
+        border-bottom: 2px solid black;
+      }
+      td {
+        padding: 5px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body onload="onLoad()">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="../index.html" style="color:black;">
+          <button class = "btn btn-outline-primary"><</button>
+      </a>
+      History
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">Setting</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <br><br>
+
+    <!--Actual content-->
+    <div class="container padding">
+
+      <div class="container-fluid">
+        <div class="row padding" id="e1">
+          <div class="col-sm-12 padding mx-auto">
+            <table id="historytable" style ="width:100%;">
+              <tr><th>Date</th><th>Result</th></tr>
+            </table>
+          </div>
+        </div>
+        <div class="row padding">
+          <div class="col-sm-12 mx-auto">
+            <button class="btn btn-outline-secondary" onclick="clearAll()">Delete Records</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- My script -->
+    <script type="text/javascript">
+      function onLoad(){
+        var storedValues = window.localStorage.historyTable ;
+        var list = document.querySelector("#historytable");
+        console.log(list);
+        var x = localStorage.getItem("myItems");
+        if (x == null){
+          x = "";
+        }
+        list.innerHTML += x;
+        console.log(list);
+        window.localStorage.historyTable = list.innerHTML;
+        var y = localStorage.getItem("historyTable");
+        console.log(y);
+      }
+      function clearAll(){
+        var r = confirm("Do you want to delete the records?");
+        if (r){
+          localStorage.removeItem("historyTable");
+          localStorage.removeItem("myItems");
+          window.location.replace("history.html");
+        }
+        else if (!r){
+          
+        }
+      }
+    </script>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../jquery-3.3.1.slim.min.js"></script>
+    <script src="../popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+  </body>
+</html>

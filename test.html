@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.5.min.css">
+    <title>SadMolish</title>
+
+    <style type="text/css">
+     body{
+        background-color: #98FB98;
+
+      }
+      p {
+        text-align: justify;
+      }
+      .btn {
+        margin-bottom: 5px;
+      }
+      .btn-primary{
+        border: none;
+        outline: none;
+        padding: 10px 16px;
+        background-color: blue;
+      }
+      .btn-outline-secondary, .btn-info {
+        margin-bottom:5px;
+        width:100px;
+      }
+      #pg1 {
+        display:block;
+      }
+      #levels {
+        display:none;
+      }
+      #pg2, #pg3, #pg4, #pg5, #pg6, #pg7, #pg8, #pg9, #pg10, #pg11,
+      #pg12, #pg13, #pg14, #pg15, #pg16, #pg17, #pg18, #pg19, #pg20,
+      #pg21, #pg22, #pg23 {
+        display:none;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="../index.html" style="color:black;">
+          <button class = "btn btn-outline-primary"><</button>
+      </a>
+      Test
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">Setting</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <br><br>
+
+    <div class="container">
+
+      <div class="container-fluid" id="pg1">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>This page will test the levels of your depression, anxiety and stress.</p>
+            <p>The test will be using the DASS test, and you will be required to answer the following questions.</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(1)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg2">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Please take note and pick the number with the statement that applied to you <b>over the past week</b>.</p>
+            <p>There are no right or wrong answer.</p>
+            <ul>
+                <li>0 - Did not apply to me at all</li>
+                <li>1 - Applied to me to some degree, or some of the time</li>
+                <li>2 - Applied to me to a considerable degree or a good part of time</li>
+                <li>3 - Applied to me very much or most of the time</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(2)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(2)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <form id = "testForm" action="#">
+
+      <div class="container-fluid" id="pg3">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Question 1</p>
+            <p>I couldn’t seem to experience any positive feeling at all.</p>
+            <div class="btn-group-justified" id="sl1">
+              <input name="q3" type="button" class="btn btn-primary" value="0"  onclick="nyuurokuYomu(0,0)">
+              <input name="q3" type="button" class="btn btn-primary" value="1"  onclick="nyuurokuYomu(0,1)">
+              <input name="q3" type="button" class="btn btn-primary" value="2"  onclick="nyuurokuYomu(0,2)">
+              <input name="q3" type="button" class="btn btn-primary" value="3"  onclick="nyuurokuYomu(0,3)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(3)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(3)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg4">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Question 2</p>
+            <p>I found it difficult to work up the initiative to do things.</p>
+            <div class="btn-group-justified" id="sl2">
+              <input name="q5" type="button" class="btn btn-primary" value="0" onclick="nyuurokuYomu(1,0)">
+              <input name="q5" type="button" class="btn btn-primary" value="1" onclick="nyuurokuYomu(1,1)">
+              <input name="q5" type="button" class="btn btn-primary" value="2" onclick="nyuurokuYomu(1,2)">
+              <input name="q5" type="button" class="btn btn-primary" value="3" onclick="nyuurokuYomu(1,3)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(4)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(4)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg5">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Question 3</p>
+            <p>I felt that I had nothing to look forward to.</p>
+            <div class="btn-group-justified" id="sl3">
+              <input name="q10" type="button" class="btn btn-primary" value="0" onclick="nyuurokuYomu(2,0)">
+              <input name="q10" type="button" class="btn btn-primary" value="1" onclick="nyuurokuYomu(2,1)">
+              <input name="q10" type="button" class="btn btn-primary" value="2" onclick="nyuurokuYomu(2,2)">
+              <input name="q10" type="button" class="btn btn-primary" value="3" onclick="nyuurokuYomu(2,3)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(5)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(5)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg6">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Question 4</p>
+            <p>I felt down-hearted and blue.</p>
+            <div class="btn-group-justified" id="sl4">
+              <input name="q13" type="button" class="btn btn-primary" value="0" onclick="nyuurokuYomu(3,0)">
+              <input name="q13" type="button" class="btn btn-primary" value="1" onclick="nyuurokuYomu(3,1)">
+              <input name="q13" type="button" class="btn btn-primary" value="2" onclick="nyuurokuYomu(3,2)">
+              <input name="q13" type="button" class="btn btn-primary" value="3" onclick="nyuurokuYomu(3,3)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(6)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(6)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg7">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Question 5</p>
+            <p>I was unable to become enthusiastic about anything.</p>
+            <div class="btn-group-justified" id="sl5">
+              <input name="q16" type="button" class="btn btn-primary" value="0" onclick="nyuurokuYomu(4,0)">
+              <input name="q16" type="button" class="btn btn-primary" value="1" onclick="nyuurokuYomu(4,1)">
+              <input name="q16" type="button" class="btn btn-primary" value="2" onclick="nyuurokuYomu(4,2)">
+              <input name="q16" type="button" class="btn btn-primary" value="3" onclick="nyuurokuYomu(4,3)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(7)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(7)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg8">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Question 6</p>
+            <p>I felt I wasn’t worth much as a person.</p>
+            <div class="btn-group-justified" id="sl6">
+              <input name="q17" type="button" class="btn btn-primary" value="0" onclick="nyuurokuYomu(5,0)">
+              <input name="q17" type="button" class="btn btn-primary" value="1" onclick="nyuurokuYomu(5,1)">
+              <input name="q17" type="button" class="btn btn-primary" value="2" onclick="nyuurokuYomu(5,2)">
+              <input name="q17" type="button" class="btn btn-primary" value="3" onclick="nyuurokuYomu(5,3)">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(8)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(8)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg9">
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Question 7</p>
+            <p>I felt that life was meaningless.</p>
+            <div class="btn-group-justified" id="sl7">
+              <input name="q21" type="button" class="btn btn-primary" value="0" onclick="nyuurokuYomu(6,0)">
+              <input name="q21" type="button" class="btn btn-primary" value="1" onclick="nyuurokuYomu(6,1)">
+              <input name="q21" type="button" class="btn btn-primary" value="2" onclick="nyuurokuYomu(6,2)">
+              <input name="q21" type="button" class="btn btn-primary" value="3" onclick="nyuurokuYomu(6,3)">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(9)">Back</button>
+          </div>
+          <div class="col-xs-6">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(9)">Result</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="pg10">
+        <div class="row padding">
+          <div class="col-xs-12 mx-auto">
+            <p>Your results are as follow:</p>
+            <p>Depression level: <b id = "depression"></b></p>
+          </div>
+        </div>
+        <div class="row padding">
+          <div class="col-xs-12 mx-auto">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(10)">Back</button>
+          </div>
+        </div>
+        <div class="row padding">
+          <div class="col-xs-12 mx-auto">
+            <button type="button" name="button" class="btn btn-outline-secondary" onclick="kekkaSave()">Save</button>
+            <p id="saved"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id = "levels">
+        <div class="row">
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Guide</button>
+          <div id="demo" class="collapse">
+            <ul>
+              <li>0 - Did not apply to me at all</li>
+              <li>1 - Applied to me to some degree, or some of the time</li>
+              <li>2 - Applied to me to a considerable degree or a good part of time</li>
+              <li>3 - Applied to me very much or most of the time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </form>
+
+    </div>
+
+    <!-- Own functions -->
+    <script type = "text/javascript">
+      var ans = new Array(); //create new array for question's answer slot
+      function firstLoad(){
+      }
+      function maePeji(x){
+        var levels = document.getElementById("levels"); //identify guide button
+        var page = x; //identify passed value as page number
+        var p = x-1; //identify previous iteration of page
+        var i = "pg" + x; //create new string to match current page
+        var j = "pg" + p; //create new string to match previous page
+        var cpage = document.getElementById(i); //identify current page
+        var npage = document.getElementById(j); //identify previous page
+        if (page <= 3){
+          levels.style.display = "none"; //hide guide button
+        }
+        cpage.style.display = "none"; //hide current page
+        npage.style.display = "block"; //show previous page
+      }
+      function tsugiPeji(x){
+        var levels = document.getElementById("levels"); //identify the guide
+        var page = x; //identify the passed value as page number
+        if (page >= 2){
+          levels.style.display = "block"; //display guide button
+        }
+        else{
+          levels.style.display = "none"; //hide guide button
+        }
+        var n = x+1; //identify next iteration of page
+        var i = "pg" + x; //create new string to match current page ID
+        var j = "pg" + n; //create new string to match next page ID
+        var cpage = document.getElementById(i); //identify current page
+        var npage = document.getElementById(j); //identify next page
+        cpage.style.display = "none"; //hide current page
+        npage.style.display = "block"; //display next page
+      }
+      function nyuurokuYomu(x,y){
+        var s = 0; //sum container
+        ans[x] = y; //obtained the value of selection into question slot array
+        var act = x+1;
+        //add value of current slot's number to total
+        function getSum(total, num){
+           return total + num;
+        }
+        //adds number of all the slots in the array and multiply by two according to DASS-21
+        s = ans.reduce(getSum) * 2;
+        //depression grading
+        if (s >= 0 && s <= 9){
+           document.getElementById("depression").innerHTML = "Normal";
+        }
+        else if(s >= 10 && s <= 13){
+           document.getElementById("depression").innerHTML = "Mild";
+        }
+        else if(s >= 14 && s <= 20){
+           document.getElementById("depression").innerHTML = "Moderate";
+        }
+        else if(s >= 21 && s <= 27){
+           document.getElementById("depression").innerHTML = "Severe";
+        }
+        else if(s >= 28){
+           document.getElementById("depression").innerHTML = "Extremely severe";
+        }
+      }
+      function kekkaSave(){
+        var a = document.getElementById("depression").innerHTML;
+        var dateToSave = localStorage.getItem("today");
+        var progRecord = {date: dateToSave, status: a};
+        localStorage.setItem("progRecord", JSON.stringify(progRecord));
+        localStorage.setItem("recordedDate", dateToSave);
+        document.getElementById("saved").innerHTML = "Today's record saved!";
+      }
+    </script>
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../jquery-3.3.1.slim.min.js"></script>
+    <script src="../popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+  </body>
+</html>
