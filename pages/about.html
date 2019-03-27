@@ -14,9 +14,19 @@
         background-color: #98FB98;
 
       }
-      #e1 {
+      .btn-info {
+        width: 250px;
+        margin-bottom: 15px;
+      }
+
+      table, td {
+        padding: 5px;
         border: 1px solid black;
         border-radius: 10px;
+      }
+
+      #what, #symptoms, #types, #causes #treatments{
+        display: none;
       }
     </style>
   </head>
@@ -24,17 +34,15 @@
 
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a href="../index.html" style="color:black;">
-          <button class = "btn btn-outline-primary"><</button>
-      </a>
-      Back
+      <button class = "btn btn-outline-primary" onclick="bakkuBotan()"><</button>
+      About
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarMenu">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">Setting</a></li>
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></td></tr>
+          <li class="nav-item"><a href="#about" class="nav-link">Setting</a></td></tr>
         </ul>
       </div>
     </nav>
@@ -42,27 +50,231 @@
     <br><br>
 
     <!--Actual content-->
-    <div class="container">
-    <div class="row text-center padding">
-         <div class="col-sm-6 mx-auto">
-   
+    <div class="container text-center">
+      <div class="container-fluid">
 
-   
-        <div class="row padding">
+        <!-- Menu -->
+        <div class="row text-center padding" id ="menu">
           <div class="col-sm-12 mx-auto">
-            <a href="what.html" button class="btn btn-info" ><img src = "1.png" style="width:20px;height:20px;"> What is Depression?</a></button><br><br>
-             <a href="symptom.html" button class="btn btn-info" ><img src = "2.png" style="width:20px;height:20px;"> Symptoms</a></button><br><br>
-              <a href="types.html" button class="btn btn-info" ><img src = "3.png" style="width:20px;height:20px;"> Types</a></button><br><br>
-               <a href="causes.html" button class="btn btn-info" ><img src = "4.png" style="width:20px;height:20px;"> Causes</a></button><br><br>
-                <a href="treatments.html" button class="btn btn-info" ><img src = "5.png" style="width:20px;height:20px;"> Treatments</a></button>
+            <button class="btn btn-info" onclick="pejiKawatta(1)"><img src = "1.png" style="width:20px;height:20px;"> What is Depression?</a></button><br><br>
+            <button class="btn btn-info" onclick="pejiKawatta(2)"><img src = "2.png" style="width:20px;height:20px;"> Symptoms</a></button><br><br>
+            <button class="btn btn-info" onclick="pejiKawatta(3)"><img src = "3.png" style="width:20px;height:20px;"> Types</a></button><br><br>
+            <button class="btn btn-info" onclick="pejiKawatta(4)"><img src = "4.png" style="width:20px;height:20px;"> Causes</a></button><br><br>
+            <button class="btn btn-info" onclick="pejiKawatta(5)"><img src = "5.png" style="width:20px;height:20px;"> Treatments</a></button>
           </div>
         </div>
-      </div>
-</div>
-</div>
-   
 
-    
+        <!-- What is depression -->
+        <div class="row text-center padding" id = "what">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">Everyone feels sad at times, but typically these feelings pass within a couple of days Clinical depression is a biological condition in which sadness (or apathy) becomes so overwhelming that it interferes with your daily life.</p>
+            <p class="text-justify">When you have depression, it is hard to enjoy life, concentrate, and do daily tasks like you used to. You may feel hopeless, unmotivated, persistently down, or very irritable. However, there is hope! With the help of theraphy and medication, millions of people have already overcome their depression, and we want to present this same hope to you.<p>
+          </div>
+        </div>
+
+        <!-- Symptoms -->
+        <div class="row text-center padding" id = "symptoms">
+          <div class="col-sm-12 mx auto">
+            <p class="text-justify">The two primary symptoms of depression is a <b>depressed mood most of the day</b> and a <b>loss of interest in normal activities and relationships</b>, with these symptoms <b>occurring nearly every day for at least 2 weeks</b>. Other symptoms may include:</p>
+            <br>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target = "#symptomsDrop">List of other symptoms</button>
+            <div id="symptomsDrop" class="collapse">
+              <br>
+              <table>
+                <tr><td>Fatigue or loss of energy</td></tr>
+                <tr><td>Feelings of worthlessness or guilt</td></tr>
+                <tr><td>Impaired concentration, indecisiveness</td></tr>
+                <tr><td>Insomnia or hypersomia (exsessive sleeping)</td></tr>
+                <tr><td>Markedly diminished interest or pleasure in almost all activities</td></tr>
+                <tr><td>Restlessness or feeling slowed down</td></tr>
+                <tr><td>Recurring thoughts of death or suicide</td></tr>
+                <tr><td>Significant weight loss or gain</td></tr>
+              </table>
+            </div>
+            <br><br>
+             <p class="text-justify">People who have depression do not all experience the same symptoms. <b>The severity, frequency, duration, and type of symptoms vary from person to person</b>.</p>
+          </div>
+        </div>
+
+
+        <!--Types-->
+        <div class="row text-center padding" id = "types">
+          <div class="col-sm-12 mx auto">
+            <button type = "button" class = "btn btn-info" data-toggle = "collapse" data-target = "#PDDdrop">2.3.1 Persistent Depressive Disorder </button>
+            <div id = "PDDdrop" class="collapse">
+              <br>
+              <p class="text-justify">Persistent depressive disorder (PDD) is the mood experience of depression that people faced for at least two years. It is common depression that people faced but it is categorized as chronic depression. The way to detect it is PDD is when people have poor appetite or overeating, insomnia lack of sleep, always feel tired and have low self-esteem (Keller et al. 1995).</p>
+            </div>
+
+            <button type = "button" class = "btn btn-info" data-toggle = "collapse" data-target = "#PDrop">2.3.2 Postpartum Depression</button>
+            <div id="PDrop" class="collapse">
+              <br>
+              <p class="text-justify">This type of depression much more serious than the mild depressive and anxiety symptoms. It is related to the social, chemical, and emotional changes associated with having a baby. This depression faced by many new mothers experience. However, postpartum can be treated by medication counselling. Hormones and chemical changes will rapid drop after delivery a baby.</p>
+            </div>
+
+            <button type = "button" class = "btn btn-info" data-toggle = "collapse" data-target = "#psychoticDrop">2.3.3 Psychotic Depression</button>
+            <div id = "psychoticDrop"  class="collapse">
+              <br>
+              <p class="text-justify">The person who faced psychotic depression (PD) may hear voice or seeing upsetting things that normal people cannot see or hear (hallucinations). They might think others can see or hear same with them but in fact it is not happen. They might think they faced guilt like having crime and wanted by the police but they did not commit any crime. People who having psychotic depression spend a lot of time themselves with bed and stay awake at night.</p>
+            </div>
+
+            <button type = "button" class = "btn btn-info" data-toggle = "collapse" data-target = "#SADDrop">2.3.4 Seasonal Affective Disorder</button>
+            <div id = "SADDrop" class="collapse">
+              <br>
+              <p class="text-justify">Seasonal Affective Disorder (SAD) is the depression that related to the seasons changes especially in the four seasons country. Usually it starts and end in the same times on every seasons. Most commonly the symptoms are in winter. People tend to sleep too much and lack of energy in daily life. The energy drag to moody feel by the person. Patient with seasonal affective disorder hard to balancing the neurotransmitter serotonin that act for balancing mood (McMahon et al., 2014).</p>
+            </div>
+
+            <button type = "button" class = "btn btn-info" data-toggle = "collapse" data-target = "#BDDrop">2.3.5 Bipolar Disorder</button>
+            <div id = "BDDrop" class="collapse">
+              <p class="text-justify">Bipolar disorder (BD) is associated with mortality risk with patients attempting suicide is 25 percent and patient that had commit suicide was 11 percent. Improper care, mental health solutions are the main causes of the BD. In general, BD patient experiences episodes of irritable mood called mania or also known as hypomania. The existed study has show that the prevalence of 3.7 percent been revealed  by using Mood Disorder Questionnaire.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Causes of depression -->
+        <div class="row text-center padding" id = "causes">
+          <div class="col-sm-12 mx-auto">
+            <button class="btn btn-info" data-toggle = "collapse" data-target = "#causesDrop">Open List of Causes</button>
+            <div id = "causesDrop" class = "col-sm-12 text-center collapse">
+              <br>
+              <table>
+                <tr><td>Loneliness</td></tr>
+                <tr><td>Lack of social support</td></tr>
+                <tr><td>Recent stressful life experiences</td></tr>
+                <tr><td>Family history of depression</td></tr>
+                <tr><td>Narital or relationship problems</td></tr>
+                <tr><td>Financial strain</td></tr>
+                <tr><td>Early childhood trauma or abuse</td></tr>
+                <tr><td>Alcohol or drug abuse</td></tr>
+                <tr><td>Unemployment or underemployment</td></tr>
+                <tr><td>Health problems or chronic pain</td></tr>
+                <tr><td>Trauma</td></tr>
+                <tr><td>Loss of loved one</td></tr>
+                <tr><td>Loss in self-identity</td></tr>
+              </table>
+            </div><br><br>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#studiesDrop">Study background</button>
+            <div id="studiesDrop" class="text-justify collapse">
+              <br>
+              <p>Researchers have learned that depression is causesd by a combination of genetics, biological, psychological, and environmental factors. Some types of depression fun in families, as some genetics research shows certain genes may make some people more vulnerable of depression.</p>
+              <p>Depression likely occurs in people because of various environmental factors as well.</p>
+              <p>Oftentimes, the causes of depression are not immediately apparent, but working with a trained professional to understand the cause of your depression can help determine the best type of treatment.<p>
+            </div>
+            <br><br>
+          </div>
+        </div>
+
+        <!-- Treatments -->
+        <div class="row text-center padding" id = "treatments">
+          <div class="col-sm-12 mx auto">
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#psychoDrop">Psychotheraphy</button>
+            <div id = "psychoDrop" class="collapse">
+              <br>
+              <p class="text-justify">Psychtheraphy or "talk theraphy" is an effective treatment for clinical depression and is often the first form of treatment recommended for depression. During psychotherapy, you talk to a licensed and trained mental health professional who helps you work through depression in various ways. This approach teaches you the skills to deal with your depression and help prevent future occurences of depression as well. Therapy can be given in a variety of formats inncluding individual, group, couple, or family therapy. It is important to find a therapist that you can connect with and trust. In addition, there are several different approaches to therapy. Cognitive Behavioral Therapy, Acceptance and Commitment Therapy, and Interpersonal Therapy have all been show to be effective for treating depression, altough effectiveness varies from person to person and other therapeutic approaches may work for you as well.</p>
+            </div>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#antidDrop">Antidepressants</button>
+            <div id="antidDrop" class="collapse">
+              <br>
+              <p class="text-justify">Antidepressant treatment is also effective for treating clinical depressiono. It is more effective for severe cases of depression, and is commonly combined with psychotherapy for an even greater effect. There are many cases or antidepressants, such as SSRIs, SNRIs, NDRIs, or tricyclic antidepressants. Keep in mind that all of these drugs have various side effects and do not have an immediate effect, they take some time to work. If one antidepresant doesn't work well, you might try another drug of the same class of depression medicines altogether. Your doctor might also try changing the the dosage. In some cases, your doctor might recommended taking more than one medication for your depression.</p>
+            </div>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#brainDrop">Brain Stimulation</button>
+            <div id="brainDrop" class="collapse">
+              <br>
+              <p class="text-justify">When medication and therapy fail to ease the symptomps of clinical depression, there are still additional effective options. Brain stimulation techniques can be used to treat major depression that has not responded to standard treatments. Electroconclusive theraphy (ECT) is the most well-known and proven type for brain stimulation, but there are also other approaches such as repetitive transcanial magnetic stimulation, deep brain stimulation, bagus nerve stimulation, and magnetic seizure therapy.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- My scripts -->
+    <script type="text/javascript">
+
+      var kokopeji = 0;
+
+      function onLoad(){
+        document.getElementById("what").style.display = "none";
+        document.getElementById("symptoms").style.display = "none";
+        document.getElementById("types").style.display = "none";
+        document.getElementById("causes").style.display = "none";
+        document.getElementById("treatments").style.display = "none";
+      }
+
+      function pejiKawatta(x){
+        if (x == 0){
+          document.getElementById("menu").style.display = "block";
+          document.getElementById("what").style.display = "none";
+          document.getElementById("symptoms").style.display = "none";
+          document.getElementById("types").style.display = "none";
+          document.getElementById("causes").style.display = "none";
+          document.getElementById("treatments").style.display = "none";
+          kokopeji = 0;
+        }
+        else if (x == 1){
+          document.getElementById("menu").style.display = "none";
+          document.getElementById("what").style.display = "block";
+          document.getElementById("symptoms").style.display = "none";
+          document.getElementById("types").style.display = "none";
+          document.getElementById("causes").style.display = "none";
+          document.getElementById("treatments").style.display = "none";
+          kokopeji = 1;
+        }
+        else if (x == 2){
+          document.getElementById("menu").style.display = "none";
+          document.getElementById("what").style.display = "none";
+          document.getElementById("symptoms").style.display = "block";
+          document.getElementById("types").style.display = "none";
+          document.getElementById("causes").style.display = "none";
+          document.getElementById("treatments").style.display = "none";
+          kokopeji = 2;
+        }
+        else if (x == 3){
+          document.getElementById("menu").style.display = "none";
+          document.getElementById("what").style.display = "none";
+          document.getElementById("symptoms").style.display = "none";
+          document.getElementById("types").style.display = "block";
+          document.getElementById("causes").style.display = "none";
+          document.getElementById("treatments").style.display = "none";
+          kokopeji = 3;
+        }
+        else if (x == 4){
+          document.getElementById("menu").style.display = "none";
+          document.getElementById("what").style.display = "none";
+          document.getElementById("symptoms").style.display = "none";
+          document.getElementById("types").style.display = "none";
+          document.getElementById("causes").style.display = "block";
+          document.getElementById("treatments").style.display = "none";
+          kokopeji = 4;
+        }
+        else if (x == 5){
+          document.getElementById("menu").style.display = "none";
+          document.getElementById("what").style.display = "none";
+          document.getElementById("symptoms").style.display = "none";
+          document.getElementById("types").style.display = "none";
+          document.getElementById("causes").style.display = "none";
+          document.getElementById("treatments").style.display = "block";
+          kokopeji = 5;
+          console.log(kokopeji);
+        }
+        else if (x == 6){
+          window.location.replace("../index.html");
+        }
+      }
+
+      function bakkuBotan(){
+        var x = kokopeji;
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5){
+          pejiKawatta(0);
+        }
+        else if (x == 0){
+          window.location.replace("../index.html");
+        }
+      }
+
+    </script>
+
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

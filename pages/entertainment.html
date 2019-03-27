@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -10,24 +10,20 @@
     <title>SadMolish</title>
 
     <style type="text/css">
-     body{
-        background-color: #98FB98;
 
+      .btn-info {
+        width: 150px;
+        margin-bottom: 5px;
       }
-      #e1 {
-        border: 1px solid black;
-        border-radius: 10px;
-      }
+
     </style>
   </head>
   <body onload="onLoad()">
 
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a href="../index.html" style="color:black;">
-          <button class = "btn btn-outline-primary"><</button>
-      </a>
-      Back
+      <button class = "btn btn-outline-primary" onclick = "bakkuBotan()"><</button>
+      Entertainment
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -42,27 +38,32 @@
     <br><br>
 
     <!--Actual content-->
-    
-
-        <div class="row padding">
-            <div class="col-sm-6 mx-auto">
-              <a href="music.html" class="btn btn-outline-secondary">Music</a>
-              <p>Depression is among the ten most frequent indicators for using alternative therapies, and music is one of the remedies for this condition (Astin, 1998). In mental health services, music therapy is regularly offered through group and individual programs following a process of referral and assessment. Music has been found to increase circulating endorphins (Mockel et al., 1994), which are associated with mood changes. In this way a music intervention is expected to improve depression.<p>
+    <div class="container">
+      <div class="container-fluid">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx auto">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item"width="560" height="315" src="https://www.youtube.com/embed/OPP9pdApRQE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class="col-sm-6 mx-auto">
-              <a href="video.html" class="btn btn-outline-secondary">Video</a>
-              <p>People who are depressed generally have low self-efficacy, which means they have low confidence in their ability to perform tasks. As such, they tend to feel overwhelmed and avoid such tasks. Thus, motivational could help to to raise confident and be more positive about themselves.<p>
-            
           </div>
+        </div>
       </div>
-
     </div>
 
-    <!-- My script -->
-   
-    <!-- Optional JavaScript -->
+    <script type="text/javascript">
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      var kokopeji = 0;
+      function bakkuBotan(){
+        var x = kokopeji;
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5){
+          pejiKawatta(0);
+        }
+        else if (x == 0){
+          window.location.replace("../index.html");
+        }
+      }
+    </script>
+
     <script src="../jquery-3.3.1.slim.min.js"></script>
     <script src="../popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

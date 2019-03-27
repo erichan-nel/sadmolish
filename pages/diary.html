@@ -10,16 +10,26 @@
     <title>SadMolish</title>
 
     <style type="text/css">
+      #mood img {
+        width: 100%;
+        height: auto\9;
+      }
 
+      #write {
+        display: none;
+      }
+
+      .btn-info {
+        width: 150px;
+        margin-bottom: 5px;
+      }
     </style>
   </head>
   <body onload="onLoad()">
 
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a href="../index.html" style="color:black;">
-          <button class = "btn btn-outline-primary"><</button>
-      </a>
+      <button class = "btn btn-outline-primary" onclick = "bakkuBotan()"><</button>
       Diary
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
         <span class="navbar-toggler-icon"></span>
@@ -37,14 +47,67 @@
     <!--Actual content-->
     <div class="container padding">
 
-      <div class="container-fluid">
-        <form id = "diaryentry">
+      <div class="container-fluid" id ="menu">
+        <div class="row text-center padding">
+          <div class="col-sm-12 mx-auto">
+            <button type="button" class="btn btn-info" onclick="changePage(1)">Write</button>
+          </div>
+          <div class="col-sm-12 mx-auto">
+            <button type="button" class="btn btn-info" onclick="changePage(2)">Open pages</button>
+          </div>
+        </div>
+      </div>
 
+      <div class="container-fluid" id = "write">
+
+          <div class="row padding text-center">
+            <div class="col">
+              <h1>How are you feeling?</h1>
+              <br>
+            </div>
+          </div>
           <div class="row padding text-center" id = "mood">
-            
+            <div class="col">
+              <img src="../img/reallysad.png" onclick = "setMood(1)">
+            </div>
+            <div class="col">
+              <img src="../img/sad.png" onclick = "setMood(2)">
+            </div>
+            <div class="col">
+              <img src="../img/normal.png" onclick = "setMood(3)">
+            </div>
+            <div class="col">
+              <img src="../img/happy.png" onclick = "setMood(4)">
+            </div>
+            <div class="col">
+              <img src="../img/reallyhappy.png" onclick = "setMood(5)">
+            </div>
+          </div>
+          <br>
+          <div class="row padding text-center" id = "title">
+            <div class="col-sm-12">
+              <input type="text" name="title" id="title" placeholder="Title">
+            </div>
+          </div>
+          <br>
+          <div class="row padding text-center" id = "entry">
+            <div class="col-sm-12 mx-auto">
+              <textarea rows="5" name="entry" form="diaryentry">Enter your thoughts here</textarea>
+            </div>
+            <div class="col-sm-12 mx-auto">
+              <button class="btn btn-info" onclick="writeitout()">Write It</button>
+            </div>
           </div>
 
-        </form>
+      </div>
+
+      <div class="container-fluid" id = "records">
+        <div class="col-sm-12 mx-auto">
+          <table id="tablerecord" style ="width:100%;">
+            <p id = "demo"></p>
+          </table>
+        </div>
+
       </div>
 
     </div>
@@ -53,7 +116,52 @@
     <script type="text/javascript">
 
       function onLoad(){
+        document.getElementById("write").style.display = "none";
+      }
 
+      var peji = 0;
+      function changePage(x){
+        var p1 = document.getElementById("menu");
+        var p2 = document.getElementById("write");
+        if (x == 1){
+          p1.style.display="none";
+          p2.style.display="block";
+          peji = 1;
+        }
+      }
+
+      function bakkuBotan(){
+        if (peji != 0){
+          document.getElementById("write").style.display="none";
+          document.getElementById("menu").style.display="block";
+          peji = 0;
+        }
+        else {
+          window.location.replace("../index.html");
+        }
+      }
+
+      function setMood(x){
+        var imgpath= "";
+        if (x == 1){
+          imgpath = "../img/reallysad.png";
+        }
+        else if (x == 2){
+          imgpath = "../img/sad.png";
+        }
+        else if (x == 3){
+          imgpath = "../img/normal.png";
+        }
+        else if (x == 4){
+          imgpath = "../img/happy.png";
+        }
+        else if (x == 5){
+          imgpath = "../img/reallyhappy.png";
+        }
+      }
+
+      function writeitout(){
+        document.getElementById("demo").innerHTML = document.getElementById("title").value;
       }
 
     </script>
