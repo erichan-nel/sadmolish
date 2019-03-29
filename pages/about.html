@@ -25,9 +25,11 @@
         border-radius: 10px;
       }
 
-      #what, #symptoms, #types, #causes #treatments{
+      #what, #symptoms, #types, #causes, #treatments{
         display: none;
       }
+
+
     </style>
   </head>
   <body onload="onLoad()">
@@ -195,66 +197,59 @@
       var kokopeji = 0;
 
       function onLoad(){
-        document.getElementById("what").style.display = "none";
-        document.getElementById("symptoms").style.display = "none";
-        document.getElementById("types").style.display = "none";
-        document.getElementById("causes").style.display = "none";
-        document.getElementById("treatments").style.display = "none";
+        $("#what").hide();
+        $("#symptoms").hide();
+        $("#types").hide();
+        $("#causes").hide();
+        $("#treatments").hide();
       }
 
       function pejiKawatta(x){
         if (x == 0){
-          document.getElementById("menu").style.display = "block";
-          document.getElementById("what").style.display = "none";
-          document.getElementById("symptoms").style.display = "none";
-          document.getElementById("types").style.display = "none";
-          document.getElementById("causes").style.display = "none";
-          document.getElementById("treatments").style.display = "none";
-          kokopeji = 0;
         }
         else if (x == 1){
-          document.getElementById("menu").style.display = "none";
-          document.getElementById("what").style.display = "block";
-          document.getElementById("symptoms").style.display = "none";
-          document.getElementById("types").style.display = "none";
-          document.getElementById("causes").style.display = "none";
-          document.getElementById("treatments").style.display = "none";
+          $("#menu").hide();
+          $("#what").fadeIn("fast");
+          $("#symptoms").hide();
+          $("#types").hide();
+          $("#causes").hide();
+          $("#treatments").hide();
           kokopeji = 1;
         }
         else if (x == 2){
-          document.getElementById("menu").style.display = "none";
-          document.getElementById("what").style.display = "none";
-          document.getElementById("symptoms").style.display = "block";
-          document.getElementById("types").style.display = "none";
-          document.getElementById("causes").style.display = "none";
-          document.getElementById("treatments").style.display = "none";
+          $("#menu").hide();
+          $("#what").hide();
+          $("#symptoms").fadeIn("fast");
+          $("#types").hide();
+          $("#causes").hide();
+          $("#treatments").hide();
           kokopeji = 2;
         }
         else if (x == 3){
-          document.getElementById("menu").style.display = "none";
-          document.getElementById("what").style.display = "none";
-          document.getElementById("symptoms").style.display = "none";
-          document.getElementById("types").style.display = "block";
-          document.getElementById("causes").style.display = "none";
-          document.getElementById("treatments").style.display = "none";
+          $("#menu").hide();
+          $("#what").hide();
+          $("#symptoms").hide();
+          $("#types").fadeIn("fast");
+          $("#causes").hide();
+          $("#treatments").hide();
           kokopeji = 3;
         }
         else if (x == 4){
-          document.getElementById("menu").style.display = "none";
-          document.getElementById("what").style.display = "none";
-          document.getElementById("symptoms").style.display = "none";
-          document.getElementById("types").style.display = "none";
-          document.getElementById("causes").style.display = "block";
-          document.getElementById("treatments").style.display = "none";
+          $("#menu").hide();
+          $("#what").hide();
+          $("#symptoms").hide();
+          $("#types").hide();
+          $("#causes").fadeIn("fast");
+          $("#treatments").hide();
           kokopeji = 4;
         }
         else if (x == 5){
-          document.getElementById("menu").style.display = "none";
-          document.getElementById("what").style.display = "none";
-          document.getElementById("symptoms").style.display = "none";
-          document.getElementById("types").style.display = "none";
-          document.getElementById("causes").style.display = "none";
-          document.getElementById("treatments").style.display = "block";
+          $("#menu").hide();
+          $("#what").hide();
+          $("#symptoms").hide();
+          $("#types").hide();
+          $("#causes").hide();
+          $("#treatments").fadeIn("fast");
           kokopeji = 5;
           console.log(kokopeji);
         }
@@ -266,7 +261,13 @@
       function bakkuBotan(){
         var x = kokopeji;
         if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5){
-          pejiKawatta(0);
+          $("#menu").fadeIn("fast");
+          $("#what").hide();
+          $("#symptoms").hide();
+          $("#types").hide();
+          $("#causes").hide();
+          $("#treatments").hide();
+          kokopeji = 0;
         }
         else if (x == 0){
           window.location.replace("../index.html");
@@ -278,7 +279,7 @@
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="../jquery-3.3.1.slim.min.js"></script>
+    <script src="../jquery-3.3.1.js"></script>
     <script src="../popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
   </body>

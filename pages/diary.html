@@ -15,13 +15,32 @@
         height: auto\9;
       }
 
-      #write {
+      #write, #records {
         display: none;
+      }
+
+      #records img{
+        width: 25px;
+        height: 25px;
       }
 
       .btn-info {
         width: 150px;
         margin-bottom: 5px;
+      }
+
+      table {
+        padding: 5px;
+        border: 2px solid black;
+      }
+      th {
+        padding: 10px;
+        border: 1px solid black;
+        border-bottom: 2px solid black;
+      }
+      td {
+        padding: 5px;
+        border: 1px solid black;
       }
     </style>
   </head>
@@ -59,7 +78,6 @@
       </div>
 
       <div class="container-fluid" id = "write">
-
           <div class="row padding text-center">
             <div class="col">
               <h1>How are you feeling?</h1>
@@ -84,15 +102,15 @@
             </div>
           </div>
           <br>
-          <div class="row padding text-center" id = "title">
+          <div class="row padding text-center">
             <div class="col-sm-12">
               <input type="text" name="title" id="title" placeholder="Title">
             </div>
           </div>
           <br>
-          <div class="row padding text-center" id = "entry">
+          <div class="row padding text-center">
             <div class="col-sm-12 mx-auto">
-              <textarea rows="5" name="entry" form="diaryentry">Enter your thoughts here</textarea>
+              <textarea rows="5" name="entry" form="diaryentry" id="entry">Enter your thoughts here</textarea>
             </div>
             <div class="col-sm-12 mx-auto">
               <button class="btn btn-info" onclick="writeitout()">Write It</button>
@@ -102,12 +120,17 @@
       </div>
 
       <div class="container-fluid" id = "records">
-        <div class="col-sm-12 mx-auto">
-          <table id="tablerecord" style ="width:100%;">
-            <p id = "demo"></p>
-          </table>
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <button class="btn btn-info" type="button" name="cleardiary" onclick="clearDiary()">Clear Diary</button>
+          </div>
         </div>
-
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <table id="tablerecord" style ="width:100%;">
+            </table>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -116,24 +139,52 @@
     <script type="text/javascript">
 
       function onLoad(){
-        document.getElementById("write").style.display = "none";
+        var storedValues = localStorage.getItem("diarypages");
+        if (storedValues == null){
+          storedValues = "";
+        }
+        var list = document.querySelector("#tablerecord");
+        list.innerHTML += storedValues;
+      }
+
+      function writeitout(){
+        var r = confirm("Happy with your entry?");
+        if (r){
+          var date = localStorage.getItem("today");
+          var textareaa = $("#entry").val();
+          var title = $("#title").val();
+          textareaa = textareaa.replace(/\r?\n/g, '<br />');
+          var kaku = "<tr><td>"+date+"<br><img src='"+imgpath+"'></td><td class = 'text-justify'><b>"+title+"</b><br><br>"+textareaa+"</td></tr>";
+          $("#tablerecord").prepend(kaku);
+          var m = document.querySelector("#tablerecord");
+          window.localStorage.diarypages = m.innerHTML;
+          $("#write").hide();
+          $("#records").fadeIn("fast");
+          peji = 2;
+        }
+        else if (!r){
+        }
       }
 
       var peji = 0;
       function changePage(x){
-        var p1 = document.getElementById("menu");
-        var p2 = document.getElementById("write");
         if (x == 1){
-          p1.style.display="none";
-          p2.style.display="block";
+          $("#menu").hide();
+          $("#write").fadeIn("fast");
           peji = 1;
+        }
+        else if (x == 2){
+          $("#menu").hide();
+          $("#records").fadeIn("fast");
+          peji = 2;
         }
       }
 
       function bakkuBotan(){
         if (peji != 0){
-          document.getElementById("write").style.display="none";
-          document.getElementById("menu").style.display="block";
+          $("#menu").fadeIn("fast");
+          $("#write").hide();
+          $("#records").hide();
           peji = 0;
         }
         else {
@@ -141,8 +192,8 @@
         }
       }
 
+      var imgpath= "";
       function setMood(x){
-        var imgpath= "";
         if (x == 1){
           imgpath = "../img/reallysad.png";
         }
@@ -160,8 +211,14 @@
         }
       }
 
-      function writeitout(){
-        document.getElementById("demo").innerHTML = document.getElementById("title").value;
+      function clearDiary(){
+        var r = confirm("Do you want to delete the records?");
+        if (r){
+          localStorage.removeItem("diarypages");
+          window.location.replace("diary.html");
+        }
+        else if (!r){
+        }
       }
 
     </script>
@@ -169,7 +226,7 @@
     <!-- Optional JavaScript -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="../jquery-3.3.1.slim.min.js"></script>
+    <script src="../jquery-3.3.1.js"></script>
     <script src="../popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
   </body>
