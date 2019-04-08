@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/jquery.mobile-1.4.5.min.css">
+    <title>SadMolish</title>
+
+    <style type="text/css">
+      body {
+        background-color: #98FB98;
+      }
+      .btn-secondary {
+        width: 200px;
+        margin-bottom: 10px;
+      }
+      .btn-info {
+        margin-bottom: 10px;
+        width: 200px;
+      }
+
+      ul,li{
+        list-style-type: none;
+        list-style-position:inside;
+        margin:0;
+        padding:0;
+      }
+
+      #exercise, #reachout, #hobby, #meditation, #helping, #gratitude, #socialize, #chores{
+        display: none;
+      }
+
+    </style>
+  </head>
+  <body onload="onLoad()">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class = "btn btn-outline-primary" onclick="bakkuBotan()"><</button>
+      Activities
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></td></tr>
+          <li class="nav-item"><a href="#about" class="nav-link">Setting</a></td></tr>
+        </ul>
+      </div>
+    </nav>
+
+    <br><br>
+
+    <!--Actual content-->
+
+    <div class="container">
+
+      <div class="container-fluid" id ="activitymenu">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <button type="button" class="btn btn-secondary">Random</button>
+          </div>
+        </div>
+        <hr>
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <ul>
+              <li><button class="btn btn-info" onclick="pejiKawatta(1)">Exercise</button></li>
+              <li><button class="btn btn-info" onclick="pejiKawatta(2)">Reach out</button></li>
+              <li><button class="btn btn-info" onclick="pejiKawatta(3)">Hobby</button></li>
+              <li><button class="btn btn-info" onclick="pejiKawatta(4)">Mindful meditation</button></li>
+              <li><button class="btn btn-info" onclick="pejiKawatta(5)">Help others</button></li>
+              <li><button class="btn btn-info" onclick="pejiKawatta(6)">Practice gratitude</button></li>
+              <li><button class="btn btn-info" onclick="pejiKawatta(7)">Socialize</button></li>
+              <li><button class="btn btn-info" onclick="pejiKawatta(8)">Chores</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="exercise">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">Excercising is one of the most effective ways to get your mind off things. </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+      function onLoad(){
+
+      }
+
+      var peji = 0;
+      function bakkuBotan(){
+        if (peji == 0){
+          window.location.replace("../index.html");
+        }
+        else {
+          $("#activitymenu").fadeIn("fast");
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          peji = 0;
+        }
+      }
+
+      function pejiKawatta(x){
+        switch(x){
+          case 1:
+          $("#activitymenu").hide();
+          $("#exercise").fadeIn("fast");
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          peji = 1;
+          break;
+
+          case 2:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").fadeIn("fast");
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          peji = 2;
+          break;
+
+          case 3:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").fadeIn("fast");
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          peji = 3;
+          break;
+
+          case 4:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").fadeIn("fast");
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          peji = 4;
+          break;
+
+          case 5:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").fadeIn("fast");
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          peji = 5;
+          break;
+
+          case 6:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").fadeIn("fast");
+          $("#socialize").hide();
+          $("#chores").hide();
+          peji = 6;
+          break;
+
+          case 7:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").fadeIn("fast");
+          $("#chores").hide();
+          peji = 7;
+          break;
+
+          case 8:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").fadeIn("fast");
+          peji = 8;
+          break;
+
+          default:
+          console.log("Something wrong with the switch case or page assignment.")
+        }
+      }
+    </script>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../jquery-3.3.1.js"></script>
+    <script src="../popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+  </body>
+</html>
