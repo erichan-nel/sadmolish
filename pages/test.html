@@ -10,6 +10,11 @@
     <title>SadMolish</title>
 
     <style type="text/css">
+      body {
+        background-image: url("../img/bg.jpg");
+        background-repeat: repeat;
+      }
+
       p {
         text-align: justify;
       }
@@ -281,6 +286,8 @@
           <div class="col-xs-12 mx-auto">
             <p>Your results are as follow:</p>
             <p>Depression level: <b id = "depression"></b></p>
+            <br>
+            <p id = "advice" class="text-justify"></p>
           </div>
         </div>
         <div class="row padding">
@@ -372,18 +379,23 @@
         //depression grading
         if (s >= 0 && s <= 9){
     	     document.getElementById("depression").innerHTML = "Normal";
+           document.getElementById("advice").innerHTML = "<b>Remarks</b>: Congratulations, you had yourself a great week. Keep up the good work. <a href='entertainment.html'>Entertain yourself</a>";
         }
         else if(s >= 10 && s <= 13){
     	     document.getElementById("depression").innerHTML = "Mild";
+           document.getElementById("advice").innerHTML = "<b>Remarks</b>: Several signs might pop here and there. However, keeping yourself busy and continue to reaching out and socialise with others could keep your company. <a href='entertainment.html'>Entertain yourself</a>";
         }
         else if(s >= 14 && s <= 20){
     	     document.getElementById("depression").innerHTML = "Moderate";
+           document.getElementById("advice").innerHTML = "<b>Remarks</b>: Sure signs were visible. If you ever felt being alone, keep in mind there are others all around you. <a href='entertainment.html'>Entertain yourself</a>";
         }
         else if(s >= 21 && s <= 27){
     	     document.getElementById("depression").innerHTML = "Severe";
+           document.getElementById("advice").innerHTML = "<b>Remarks</b>: It is advised to visit a counselor. Learning meditation and other passive activities to keep your mind clear is advisable. <a href='entertainment.html'>Entertain yourself</a>";
         }
         else if(s >= 28){
     	     document.getElementById("depression").innerHTML = "Extremely severe";
+           document.getElementById("advice").innerHTML = "<b>Remarks</b>: You need help, child. <a href='entertainment.html'>Entertain yourself</a>";
         }
 
       }

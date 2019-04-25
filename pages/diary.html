@@ -10,12 +10,17 @@
     <title>SadMolish</title>
 
     <style type="text/css">
+      body {
+        background-image: url("../img/bg.jpg");
+        background-repeat: repeat;
+      }
+
       #mood img {
         width: 100%;
         height: auto\9;
       }
 
-      #write, #records {
+      #write, #records ,#avgmoodpage {
         display: none;
       }
 
@@ -73,6 +78,9 @@
           </div>
           <div class="col-sm-12 mx-auto">
             <button type="button" class="btn btn-info" onclick="changePage(2)">Open pages</button>
+          </div>
+          <div class="col-sm-12 mx-auto">
+            <button type="button" class="btn btn-info" onclick="changePage(3)">Average Mood</button>
           </div>
         </div>
       </div>
@@ -132,88 +140,354 @@
         </div>
       </div>
 
+      <div class="container-fluid" id="avgmoodpage">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <button class="btn btn-info" type="button" name="cleardiary" onclick="clearDiary()">Clear Diary</button>
+          </div>
+          <div class="col-sm-12 mx-auto">
+            <br>
+            <table id="tableavg" style="width:100%">
+              <tr>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- My script -->
     <script type="text/javascript">
-
-      function onLoad(){
-        var storedValues = localStorage.getItem("diarypages");
-        if (storedValues == null){
-          storedValues = "";
-        }
-        var list = document.querySelector("#tablerecord");
-        list.innerHTML += storedValues;
-      }
-
-      function writeitout(){
-        var r = confirm("Happy with your entry?");
-        if (r){
-          var date = localStorage.getItem("today");
-          var textareaa = $("#entry").val();
-          var title = $("#title").val();
-          textareaa = textareaa.replace(/\r?\n/g, '<br />');
-          var kaku = "<tr><td>"+date+"<br><img src='"+imgpath+"'></td><td class = 'text-justify'><b>"+title+"</b><br><br>"+textareaa+"</td></tr>";
-          $("#tablerecord").prepend(kaku);
-          var m = document.querySelector("#tablerecord");
-          window.localStorage.diarypages = m.innerHTML;
-          $("#write").hide();
-          $("#records").fadeIn("fast");
-          peji = 2;
-        }
-        else if (!r){
-        }
-      }
-
+      //Setting up global variables
+      //===========================
+      var today;
+      var dd;
+      var mm;
+      var yy;
+      var dte;
       var peji = 0;
-      function changePage(x){
-        if (x == 1){
-          $("#menu").hide();
-          $("#write").fadeIn("fast");
-          peji = 1;
+      var imgpath= "";
+      var moodvalue;
+
+      //Things that should run on on load
+      //=================================
+      function onLoad(){
+        today = new Date();
+        dd = today.getDate();
+        mm = today.getMonth() + 1;
+        yy = today.getFullYear();
+        dte = today.toDateString();
+
+        //Displaying diary pages
+        //======================
+        var storedValues = localStorage.getItem("diarypages"); //Gets the stored table.
+        if (storedValues == null){ //If the table is empty or first time use.
+          storedValues = ""; //Display nothing
         }
-        else if (x == 2){
-          $("#menu").hide();
-          $("#records").fadeIn("fast");
-          peji = 2;
+        else{
+          var list = document.querySelector("#tablerecord"); //Select table with ID = tablerecord.
+          list.innerHTML += storedValues; //Add the content of the stored table into the selected table.
+        }
+
+        //Displaying the average mood per month page
+        //==========================================
+        var storedMood = localStorage.getItem("moodpages"); //Gets the stored table.
+        if (storedMood == null){ //If the table is empty or first time use.
+          storedMood == ""; //Display nothing.
+        }
+        else {
+          var listmood = document.querySelector("#tableavg"); //Select table with ID = tableavg.
+          listmood.innerHTML += storedMood; //Add the content of the stored table into the selected table.
+        }
+
+      }
+
+      //To write out the entry into pages table
+      //=======================================
+      function writeitout(){
+        var r = confirm("Happy with your entry?"); //Ask if the user are sure/happy with their entry.
+        if (r){ //If they accept
+          //Recording to diary pages
+          //========================
+          var date = localStorage.getItem("today"); //Get today's date.
+          var textareaa = $("#entry").val(); //Read the entry box texts.
+          var title = $("#title").val(); //Read the title box texts.
+          textareaa = textareaa.replace(/\r?\n/g, '<br />'); //Converting breaklines into actual breaklines.
+          var kaku = "<tr><td>"+date+"<br><img src='"+imgpath+"'></td><td class = 'text-justify'><b>"+title+"</b><br><br>"+textareaa+"</td></tr>";
+          $("#tablerecord").prepend(kaku); //Adding the new entry above previous entries in table with ID = tablerecord using prepend.
+          var m = document.querySelector("#tablerecord"); //Select the table with ID = tablerecord
+          window.localStorage.diarypages = m.innerHTML; //Save the selected table into stored page table.
+          recordAvg(); //Execute the average mood per month function.
+          $("#write").hide(); //Hide the entry page.
+          $("#records").fadeIn("fast"); //Show the pages page.
+          peji = 2; //Setting current page to 2.
+        }
+        else if (!r){ //If not accept, do nothing and close dialog.
         }
       }
 
+      //Recording for average
+      //=====================
+      function recordAvg(){
+        //To determine which month and year
+        //=================================
+        var avgcontainer = ""; //Holder for the month and year name.
+        switch (mm) { //Original months are intergers. So changing it to names corresponding to the current month.
+          case 1:
+            avgcontainer = "Jan";
+            break;
+          case 2:
+            avgcontainer = "Feb";
+            break;
+          case 3:
+            avgcontainer = "Mar";
+            break;
+          case 4:
+            avgcontainer = "Apr";
+            break;
+          case 5:
+            avgcontainer = "May";
+            break;
+          case 6:
+            avgcontainer = "Jun";
+            break;
+          case 7:
+            avgcontainer = "Jul";
+            break;
+          case 8:
+            avgcontainer = "Aug";
+            break;
+          case 9:
+            avgcontainer = "Sep";
+            break;
+          case 10:
+            avgcontainer = "Oct";
+            break;
+          case 11:
+            avgcontainer = "Nov";
+            break;
+          case 12:
+            avgcontainer = "Dec";
+            break;
+          default:
+            console.log("Month detection error"); //If it can't be set, console will write out the error message.
+            break;
+        }
+
+        var thisyear = yy.toString();
+        avgcontainer += thisyear; //Combine the month and year together.
+        console.log(avgcontainer);
+
+
+        //Retrieving and Setting value of average mood
+        //================================
+        var countname = "Count"+avgcontainer;
+        var sumname = "Sum"+avgcontainer;
+        var kaku = ""; //For writing table entry
+        var m; //To select tables.
+        var moodimagepath = "";
+        var percent = 0.0;
+        console.log(countname +" "+ sumname);
+        var counter = localStorage.getItem(countname); //Use for division of average.
+        var sumcontainer = localStorage.getItem(sumname); //Get raw total sum of mood value.
+        if (sumcontainer == null){
+          sumcontainer = 0; //If the value of the raw sum empty, set it to zero or it'll return 'null'. For first time execution.
+          console.log("Retrieved sumcontainer: "+sumcontainer);
+          sumcontainer += moodvalue; //moodvalue was set on clicking one of the mood. Add it to the total sum of the mood.
+          console.log("Retrieved sumcontainer: "+sumcontainer);
+          if (counter == null){
+            counter = 1; //First entry so set it to zero.
+            console.log("Retrieved counter:" + counter);
+            var counterr = parseInt(counter);
+            console.log("Iterated counter:" + counterr);
+          }
+          else{
+            var counterr = parseInt(counter); //If there's value, parse it to interger.
+            console.log("Retrieved counter:" + counter);
+            counterr += 1; //Adding iteration.
+            console.log("Iterated counter:" + counterr);
+          }
+          var averagemoodvalue = sumcontainer / counterr; //Calculate the average mood value.
+          console.log("Average mood value is: " + averagemoodvalue);
+
+          localStorage.setItem(countname,counterr); //Set number of iterations for next use.
+          console.log("Count avgcontainer: " +localStorage.getItem(countname));
+
+          localStorage.setItem(sumname,sumcontainer); //Set latest raw total sum for next use.
+          console.log("Sum avgcontainer: " +localStorage.getItem(sumname));
+
+          localStorage.setItem(avgcontainer,averagemoodvalue); //Set latest average mood value.
+          console.log("Average avgcontainer: " +localStorage.getItem(avgcontainer));
+
+          //Setting the average mood faces
+          moodimagepath = "";//Container for image path.
+          percent = (averagemoodvalue / countname); //Percentage of the mood.
+          console.log("percent: "+percent);
+          if (averagemoodvalue >= 1 && averagemoodvalue <= 1.9){
+            moodimagepath = "../img/reallysad.png";
+          }
+          else if (averagemoodvalue >= 2 && averagemoodvalue <= 2.9){
+            moodimagepath = "../img/sad.png";
+          }
+          else if (averagemoodvalue >= 3 && averagemoodvalue <= 3.9){
+            moodimagepath = "../img/normal.png";
+          }
+          else if (averagemoodvalue >= 4 && averagemoodvalue <= 4.9){
+            moodimagepath = "../img/happy.png";
+          }
+          else if (averagemoodvalue >= 5 && averagemoodvalue <= 5.9){
+            moodimagepath = "../img/reallyhappy.png";
+          }
+
+          //Creating table of average mood per year
+          kaku = "<tr><td>"+avgcontainer+"</td><td><img src ='"+moodimagepath+"'></td></tr>";
+          $("#tableavg").prepend(kaku); //Adding the new entry above previous entries in table with ID = tableavg using prepend.
+          m = document.querySelector("#tableavg"); //Select the table with ID = tableavg.
+          window.localStorage.moodpages = m.innerHTML; //Save the selected table into stored page table.
+        }
+
+        else{
+          sumcontainer = parseInt(sumcontainer); //localStorage values are strings, so parse it to interger.
+          sumcontainer += moodvalue; //moodvalue was set on clicking one of the mood. Add it to the total sum of the mood.
+          console.log("Retrieved sumcontainer: "+sumcontainer);
+          if (counter == null){
+            counter = 1; //First entry so set it to zero.
+            console.log("Retrieved counter:" + counter);
+            var counterr = parseInt(counter);
+            console.log("Iterated counter:" + counterr);
+          }
+          else{
+            var counterr = parseInt(counter); //If there's value, parse it to interger.
+            console.log("Retrieved counter:" + counter);
+            counterr += 1; //Adding iteration.
+            console.log("Iterated counter:" + counterr);
+          }
+          var averagemoodvalue = sumcontainer / counterr; //Calculate the average mood value.
+          console.log("Average mood value is: " + averagemoodvalue);
+
+          localStorage.setItem(countname,counterr); //Set number of iterations for next use.
+          console.log("Count avgcontainer: " +localStorage.getItem(countname));
+
+          localStorage.setItem(sumname,sumcontainer); //Set latest raw total sum for next use.
+          console.log("Sum avgcontainer: " +localStorage.getItem(sumname));
+
+          localStorage.setItem(avgcontainer,averagemoodvalue); //Set latest average mood value.
+          console.log("Average avgcontainer: " +localStorage.getItem(avgcontainer));
+
+          //Setting the average mood faces
+          moodimagepath = "";//Container for image path.
+          percent = (averagemoodvalue / countname); //Percentage of the mood.
+          console.log("percent: "+percent);
+          if (averagemoodvalue >= 1 && averagemoodvalue <= 1.9){
+            moodimagepath = "../img/reallysad.png";
+          }
+          else if (averagemoodvalue >= 2 && averagemoodvalue <= 2.9){
+            moodimagepath = "../img/sad.png";
+          }
+          else if (averagemoodvalue >= 3 && averagemoodvalue <= 3.9){
+            moodimagepath = "../img/normal.png";
+          }
+          else if (averagemoodvalue >= 4 && averagemoodvalue <= 4.9){
+            moodimagepath = "../img/happy.png";
+          }
+          else if (averagemoodvalue >= 5 && averagemoodvalue <= 5.9){
+            moodimagepath = "../img/reallyhappy.png";
+          }
+
+          //Creating table of average mood per year
+          kaku = "<tr><td>"+avgcontainer+"</td><td><img src ='"+moodimagepath+"'></td></tr>";
+          m = document.querySelector("#tableavg"); //Select the table with ID = tableavg.
+          var checkprev = m.rows[0].cells[0].innerHTML;
+          console.log("checkprev: "+checkprev);
+          if (avgcontainer == checkprev){
+            document.getElementById("tableavg").deleteRow(0);
+          }
+          $("#tableavg").prepend(kaku); //Adding the new entry above previous entries in table with ID = tableavg using prepend.
+          window.localStorage.moodpages = m.innerHTML; //Save the selected table into stored page table.
+        }
+
+      }
+
+      //Page navigation
+      //===============
+      function changePage(x){
+        switch (x) {
+          case 1:
+            $("#menu").hide();
+            $("#write").fadeIn("fast");
+            $("#avgmoodpage").hide();
+            peji = 1;
+            break;
+          case 2:
+            $("#menu").hide();
+            $("#records").fadeIn("fast");
+            $("#avgmoodpage").hide();
+            peji = 2;
+            break;
+          case 3:
+            $("#menu").hide();
+            $("#write").hide();
+            $("#avgmoodpage").fadeIn("fast");
+            peji = 3;
+            break;
+          default:
+            console.log("Something wrong with changing pages."); //If page changing behaves unaturally or not working.
+            break;
+        }
+      }
+
+      //Back button
+      //===========
       function bakkuBotan(){
+        //If it's in any subpages, go back to Diary main menu first.
         if (peji != 0){
           $("#menu").fadeIn("fast");
           $("#write").hide();
           $("#records").hide();
+          $("#avgmoodpage").hide();
           peji = 0;
         }
+        //If not, go to app's main menu.
         else {
           window.location.replace("../index.html");
         }
       }
 
-      var imgpath= "";
+      //Set mood image for diary page and mood value for calculating the average per month
+      //==================================================================================
       function setMood(x){
         if (x == 1){
           imgpath = "../img/reallysad.png";
+          moodvalue = 1;
         }
         else if (x == 2){
           imgpath = "../img/sad.png";
+          moodvalue = 2;
         }
         else if (x == 3){
           imgpath = "../img/normal.png";
+          moodvalue = 3;
         }
         else if (x == 4){
           imgpath = "../img/happy.png";
+          moodvalue = 4;
         }
         else if (x == 5){
           imgpath = "../img/reallyhappy.png";
+          moodvalue = 5;
         }
+        console.log('moodvalue: '+ moodvalue);
       }
 
       function clearDiary(){
-        var r = confirm("Do you want to delete the records?");
+        var r = confirm("Do you want to delete the records?\nWARNING: Your average mood per month record will be deleted as well!");
         if (r){
           localStorage.removeItem("diarypages");
+          localStorage.removeItem("CountApr2019");
+          localStorage.removeItem("SumApr2019");
+          localStorage.removeItem("Apr2019");
+          localStorage.removeItem("moodpages");
           window.location.replace("diary.html");
         }
         else if (!r){

@@ -11,10 +11,11 @@
 
     <style type="text/css">
       body {
-        background-color: #98FB98;
+        background-image: url("../img/bg.jpg");
+        background-repeat: repeat;
       }
       .btn-secondary {
-        width: 200px;
+        width: 200px;l
         margin-bottom: 10px;
       }
       .btn-info {
@@ -84,7 +85,74 @@
       <div class="container-fluid" id="exercise">
         <div class="row padding text-center">
           <div class="col-sm-12 mx-auto">
-            <p class="text-justify">Excercising is one of the most effective ways to get your mind off things. </p>
+            <p class="text-justify">Excercising is one of the most effective ways to get your mind off things as you could center your focus at the task at hand.</p>
+            <p class="text-justify">Reseach had found that exercising releases adrenaline, a hormone that keeps one's body active and leads to a positive mind.</p>
+            <p class="text-justify">Go out and jog around, do small number of push-ups or squats. It is never about the intensity, it is only about doing it. Just do it!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="reachout">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">Humans are inherently socialising creatures. It is a neccessity for one to communicate.</p>
+            <p class="text-justify">Reaching out and having a conversation with anyone could provide relief and assurance to yourself.</p>
+            <p class="text-justify">So go on ahead and reach out to others, there is no need for deep conversation. Even small talks could bring a long way towards self-recovery whilst improving your relations with others.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="hobby">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">There's nothing more fun than doing the things you love.</p>
+            <p class="text-justify">Endorphin is the hormone that released to make us feel happy, and doing your hobbies proved to give off of it quite a lot.</p>
+            <p class="text-justify">Go, do art or play music. Plant flowers or take a long walk. Hobbies aren't just a personal trait, it's your key to a better self.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="meditation">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">A calm mind leads to inner peace. Meditation encourages peace and sound state of mind.</p>
+            <p class="text-justify">Take a breather, have a session of meditation for yourself.</p>
+            <p class="text-justify">Whether it's a motion meditation such as Tai Chi and Yoga, or a static meditation, the point is to have a time for yourself.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="helping">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">Reaching out to help others is a noble act and many have overlooked this simple fact.</p>
+            <p class="text-justify">Going out to help a friend who needs a hand with their work or problems could take your mind off things and learn to care and appreciate your friendships.</p>
+            <p class="text-justify">Of course, it doesn't have to be an aquiantance. If you see a stranger in need of immediate help, no matter how small, lend a hand. It's good for the both of you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="gratitude">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">List out the things that you truly grateful for. A simple activity that doesn't require much movements as it is but a simple act of self-reflection.</p>
+            <p class="text-justify">da</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="socialize">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">Supposed to be texts here.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="chores">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <p class="text-justify">Supposed to be texts here.</p>
           </div>
         </div>
       </div>
@@ -92,8 +160,26 @@
     </div>
 
     <script type="text/javascript">
+      var timer = 600;
+      var min = 0;
+      var sec = 0;
+
       function onLoad(){
 
+      }
+
+      function startTimer(){
+        min = parseInt(timer/60);
+        sec = parseInt(timer%60);
+
+        if (timer < 1){
+          window.alert("Time's up!");
+        }
+        document.getElementById("time").innerHTML = "<b>Timer: </b>" + min.toString() +":"+ sec.toString();
+        timer--;
+        setTimeout(function(){
+          startTimer();
+        }, 1000);
       }
 
       var peji = 0;
