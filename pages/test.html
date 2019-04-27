@@ -12,7 +12,8 @@
     <style type="text/css">
       body {
         background-image: url("../img/bg.jpg");
-        background-repeat: repeat;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
       }
 
       p {
@@ -281,32 +282,30 @@
         </div>
       </div>
 
-      <div class="container-fluid" id="pg10">
+      <div class="container-fluid text-justify" id="pg10">
         <div class="row padding">
           <div class="col-xs-12 mx-auto">
             <p>Your results are as follow:</p>
-            <p>Depression level: <b id = "depression"></b></p>
-            <br>
+            <p>Score:<b id="scoreval"></b></p>
+            <p>Depression level:<b id = "depression"></b></p>
+            <div class="row padding text-center">
+              <div class="col-xs-12 mx-auto">
+                <button id="kekka" type="button" name="button" class="btn btn-outline-secondary" onclick="kekkaSave()">Save</button>
+                <p id="saved"></p>
+              </div>
+            </div>
             <p id = "advice" class="text-justify"></p>
-            <br>
-            <p>If you need it, it is advisable to visit the nearest psychiatrist in your area. Below is the map with the closest centre:</p>
+            <p>Below is the map with the closest spsychiatrist centre:</p>
             <div class="embed-responsive embed-responsive-16by9">
               <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31745.632277383254!2d116.06691924301902!3d5.966611619788845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spsychiatrist!5e0!3m2!1sen!2smy!4v1556334020674!5m2!1sen!2smy" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
-          </div>
-        </div>
-        <div class="row padding">
-          <div class="col-xs-12 mx-auto">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(10)">Back</button>
-          </div>
-        </div>
-        <div class="row padding">
-          <div class="col-xs-12 mx-auto">
-            <button id="kekka" type="button" name="button" class="btn btn-outline-secondary" onclick="kekkaSave()">Save</button>
-            <p id="saved"></p>
+            <br>
+            <p class="text-center">Call the contact below for help:</p>
+            <p class="text-center"><b>Mr. Adzmil <br>(Bhg. Kaunseling & Bimbingan) <br>014-675 3445</b></p>
           </div>
         </div>
       </div>
+    </div>
 
       <div class="container-fluid" id = "levels">
         <div class="row">
@@ -341,30 +340,34 @@
         var j = "pg" + p; //create new string to match previous page
         var cpage = document.getElementById(i); //identify current page
         var npage = document.getElementById(j); //identify previous page
-        if (page <= 3){
-          levels.style.display = "none"; //hide guide button
+        switch(x){
+          case 0,1,9:
+            $("#levels").hide();
+            break;
+          default:
+            $("#levels").fadeIn("fast");
         }
-        cpage.style.display = "none"; //hide current page
-        npage.style.display = "block"; //show previous page
+        $(cpage).hide(); //hide current page
+        $(npage).fadeIn("fast"); //show previous page
       }
 
       function tsugiPeji(x){
         var levels = document.getElementById("levels"); //identify the guide
         var page = x; //identify the passed value as page number
-
-        if (page >= 2){
-          levels.style.display = "block"; //display guide button
-        }
-        else{
-          levels.style.display = "none"; //hide guide button
+        switch(x){
+          case 0,1,9:
+            $("#levels").hide();
+            break;
+          default:
+            $("#levels").fadeIn("fast");
         }
         var n = x+1; //identify next iteration of page
         var i = "pg" + x; //create new string to match current page ID
         var j = "pg" + n; //create new string to match next page ID
         var cpage = document.getElementById(i); //identify current page
         var npage = document.getElementById(j); //identify next page
-        cpage.style.display = "none"; //hide current page
-        npage.style.display = "block"; //display next page
+        $(cpage).hide(); //hide current page
+        $(npage).fadeIn("fast"); //display next page
         var btn = document.getElementById("kekka");
         btn.disabled = false;
       }
@@ -380,7 +383,7 @@
 
         //adds number of all the slots in the array and multiply by two according to DASS-21
         s = ans.reduce(getSum) * 2;
-
+        document.getElementById("scoreval").innerHTML = s;
         //depression grading
         if (s >= 0 && s <= 9){
     	     document.getElementById("depression").innerHTML = "Normal";

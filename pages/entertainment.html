@@ -12,12 +12,17 @@
     <style type="text/css">
       body {
         background-image: url("../img/bg.jpg");
-        background-repeat: repeat;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
       }
 
       .btn-info {
         width: 150px;
         margin-bottom: 5px;
+      }
+
+      #meditation, #music, #satisfying, #misc{
+        display:none;
       }
 
     </style>
@@ -44,16 +49,110 @@
     <!--Actual content-->
     <div class="container">
       <div class="container-fluid">
-        <div class="row padding text-center">
+
+        <div class="row padding text-center" id = "menu">
+          <div class="col-sm-12 mx-auto">
+            <div class="col-sm-12 mx-auto">
+              <button type="button" class="btn btn-info" onclick="pejiKawatta(1)">Guided Meditation</button>
+            </div>
+            <div class="col-sm-12 mx-auto">
+              <button type="button" class="btn btn-info" onclick="pejiKawatta(2)">Music</button>
+            </div>
+            <div class="col-sm-12 mx-auto">
+              <button type="button" class="btn btn-info" onclick="pejiKawatta(3)">Satisfying Videos</button>
+            </div>
+            <div class="col-sm-12 mx-auto">
+              <button type="button" class="btn btn-info" onclick="pejiKawatta(4)">Miscellaneous</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row padding text-center" id="meditation">
+          <div class="col-sm-12 mx auto">
+            <p class="text-justify">The following videos will guide you on your steps to perform meditation for a better mental health.</p><br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/2nV-v8zXpH0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/iCvmsMzlF7o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/N2QZM7azGoA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            </div>
+        </div>
+
+        <div class="row padding text-center" id="music">
+          <div class="col-sm-12 mx auto">
+            <p class="text-justify">The following videos will play music that is suited for your mood to go through the day.</p><br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/e8qDOGLCSFo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/NEibmjGr-po" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/bnVUHWCynig" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/X9TnTlPLHc8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/IvUU8joBb1Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            </div>
+        </div>
+
+        <div class="row padding text-center" id="satisfying">
+          <div class="col-sm-12 mx auto">
+            <p class="text-justify">Videos that will satisfy yourself and making yourself feeling good for the day.</p><br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/Zv4NnN2g7tk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/JE9yGOaF-ao" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/1AEvQAg6TE0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            </div>
+        </div>
+
+        <div class="row padding text-center" id="misc">
           <div class="col-sm-12 mx auto">
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item"width="560" height="315" src="https://www.youtube.com/embed/OPP9pdApRQE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/OPP9pdApRQE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br>
             <p class="text-justify"><b>Title:</b> A POWERFUL EXPERIENCE</p>
             <p class="text-justify"><b>About:</b> This video is a playthrough by jacksepticeye of a game titled "Beginner's Guide". It is a game that explores inside the mind of a game creator going through depression, which were apparent and made visible throughout the series of games he developed. However, slowly the real subject of the game started to shift around. Who actually is in need of help? The creator, the narrator, or the player?</p>
+            <hr>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/cMEVOVIqVt0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br>
+            <p class="text-justify"><b>Title:</b> TIE - A Game about Depression</p>
+            <p class="text-justify"><b>About:</b> Jacksepticeye did a let's play on a retro-styled game called "TIE", a game that showed players how the world is from the eyes of a depressed person in everyday life.</p>
+            <hr>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/48H7FkH7EeQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="text-justify"><b>Title:</b> DEPRESSION - Motivational Video</p>
+            <p class="text-justify"><b>About:</b> A motivtional video made by the MulliganBrothers to reach out to the people who really needs it. Perhaps, they are trying to reach out towards you.</p>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -61,11 +160,60 @@
     <!-- Own scripts -->
     <script type="text/javascript">
 
+      //Global variables
+      //================
+      var peji = 0; //Page number
 
-      var kokopeji = 0;
+      //On page load functions
+      //======================
+      function onLoad(){
+
+      }
+
+      //Page navigation
+      //===============
+      function pejiKawatta(x){
+        switch (x) {
+          case 0:
+            $("#menu").fadeIn("fast");
+            $("#meditation").hide();
+            $("#music").hide();
+            $("#satisfying").hide();
+            $("#misc").hide();
+            peji = 0;
+            break;
+          case 1:
+            $("#menu").hide();
+            $("#meditation").fadeIn("fast");
+            peji = 1;
+            break;
+          case 2:
+            $("#menu").hide();
+            $("#music").fadeIn("fast");
+            peji = 2;
+            break;
+          case 3:
+            $("#menu").hide();
+            $("#satisfying").fadeIn("fast");
+            peji = 3;
+            break;
+          case 4:
+            $("#menu").hide();
+            $("#misc").fadeIn("fast");
+            peji = 4;
+            break;
+          default:
+            console.log("Something wrong with changing pages."); //If page changing behaves unaturally or not working.
+            break;
+        }
+      }
+
+      //Back button
+      //===========
       function bakkuBotan(){
-        var x = kokopeji;
-        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5){
+        //If it's in any subpages, go back to Diary main menu first.
+        var x = peji;
+        if (x == 1 || x == 2 || x == 3 || x == 4 ){
           pejiKawatta(0);
         }
         else if (x == 0){
