@@ -79,9 +79,9 @@
           <div class="col-sm-12 mx-auto">
             <button type="button" class="btn btn-info" onclick="changePage(2)">Open pages</button>
           </div>
-          <div class="col-sm-12 mx-auto">
+          <!--<div class="col-sm-12 mx-auto">
             <button type="button" class="btn btn-info" onclick="changePage(3)">Average Mood</button>
-          </div>
+          </div>-->
         </div>
       </div>
 
@@ -94,19 +94,19 @@
           </div>
           <div class="row padding text-center" id = "mood">
             <div class="col">
-              <img src="../img/reallysad.png" onclick = "setMood(1)">
+              <img src="../img/reallysad.png" id="mood1" class="img-fluid" onclick = "setMood(1)">
             </div>
             <div class="col">
-              <img src="../img/sad.png" onclick = "setMood(2)">
+              <img src="../img/sad.png" id="mood2" class="img-fluid" onclick = "setMood(2)">
             </div>
             <div class="col">
-              <img src="../img/normal.png" onclick = "setMood(3)">
+              <img src="../img/normal.png" id="mood3" class="img-fluid" onclick = "setMood(3)">
             </div>
             <div class="col">
-              <img src="../img/happy.png" onclick = "setMood(4)">
+              <img src="../img/happy.png" id="mood4" class="img-fluid" onclick = "setMood(4)">
             </div>
             <div class="col">
-              <img src="../img/reallyhappy.png" onclick = "setMood(5)">
+              <img src="../img/reallyhappy.png" id="mood5" class="img-fluid" onclick = "setMood(5)">
             </div>
           </div>
           <br>
@@ -218,7 +218,7 @@
           $("#tablerecord").prepend(kaku); //Adding the new entry above previous entries in table with ID = tablerecord using prepend.
           var m = document.querySelector("#tablerecord"); //Select the table with ID = tablerecord
           window.localStorage.diarypages = m.innerHTML; //Save the selected table into stored page table.
-          recordAvg(); //Execute the average mood per month function.
+          //recordAvg(); //Execute the average mood per month function.
           $("#write").hide(); //Hide the entry page.
           $("#records").fadeIn("fast"); //Show the pages page.
           peji = 2; //Setting current page to 2.
@@ -460,22 +460,47 @@
         if (x == 1){
           imgpath = "../img/reallysad.png";
           moodvalue = 1;
+          document.getElementById("mood1").style.border = "1px solid black";
+          document.getElementById("mood2").style.border = "0px solid black";
+          document.getElementById("mood3").style.border = "0px solid black";
+          document.getElementById("mood4").style.border = "0px solid black";
+          document.getElementById("mood5").style.border = "0px solid black";
         }
         else if (x == 2){
           imgpath = "../img/sad.png";
           moodvalue = 2;
+          document.getElementById("mood1").style.border = "0px solid black";
+          document.getElementById("mood2").style.border = "1px solid black";
+          document.getElementById("mood3").style.border = "0px solid black";
+          document.getElementById("mood4").style.border = "0px solid black";
+          document.getElementById("mood5").style.border = "0px solid black";
         }
         else if (x == 3){
           imgpath = "../img/normal.png";
           moodvalue = 3;
+          document.getElementById("mood1").style.border = "0px solid black";
+          document.getElementById("mood2").style.border = "0px solid black";
+          document.getElementById("mood3").style.border = "1px solid black";
+          document.getElementById("mood4").style.border = "0px solid black";
+          document.getElementById("mood5").style.border = "0px solid black";
         }
         else if (x == 4){
           imgpath = "../img/happy.png";
           moodvalue = 4;
+          document.getElementById("mood1").style.border = "0px solid black";
+          document.getElementById("mood2").style.border = "0px solid black";
+          document.getElementById("mood3").style.border = "0px solid black";
+          document.getElementById("mood4").style.border = "1px solid black";
+          document.getElementById("mood5").style.border = "0px solid black";
         }
         else if (x == 5){
           imgpath = "../img/reallyhappy.png";
           moodvalue = 5;
+          document.getElementById("mood1").style.border = "0px solid black";
+          document.getElementById("mood2").style.border = "0px solid black";
+          document.getElementById("mood3").style.border = "0px solid black";
+          document.getElementById("mood4").style.border = "0px solid black";
+          document.getElementById("mood5").style.border = "1px solid black";
         }
         console.log('moodvalue: '+ moodvalue);
       }

@@ -22,6 +22,13 @@
         margin-bottom: 10px;
         width: 200px;
       }
+      #mood{
+        max-width: 320px;
+      }
+      #mood img {
+        width: 100%;
+        height: auto\9;
+      }
 
       ul,li{
         list-style-type: none;
@@ -30,7 +37,7 @@
         padding:0;
       }
 
-      #exercise, #reachout, #hobby, #meditation, #helping, #gratitude, #socialize, #chores{
+      #exercise, #reachout, #hobby, #meditation, #helping, #gratitude, #socialize, #chores, #timerdisplay, #mood, #stopTimerButton{
         display: none;
       }
 
@@ -157,31 +164,83 @@
         </div>
       </div>
 
+      <div class="container-fluid" >
+        <div class="row padding text-center" id = "mood">
+          <div class="col">
+            <img src="../img/reallysad.png" id="mood1" class="img-fluid" onclick = "setMood(1)">
+          </div>
+          <div class="col">
+            <img src="../img/sad.png" id="mood2" class="img-fluid" onclick = "setMood(2)">
+          </div>
+          <div class="col">
+            <img src="../img/normal.png" id="mood3" class="img-fluid" onclick = "setMood(3)">
+          </div>
+          <div class="col">
+            <img src="../img/happy.png" id="mood4" class="img-fluid" onclick = "setMood(4)">
+          </div>
+          <div class="col">
+            <img src="../img/reallyhappy.png" id="mood5" class="img-fluid" onclick = "setMood(5)">
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="timerdisplay">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <button id="startTimerButton" class="btn btn-primary" type="button" name="startTimer" onclick="startTimer()">BEGIN</button>
+            <button id="stopTimerButton" class="btn btn-primary" type="button" name="stopTimer" onclick="stopTimer()">STOP</button>
+          </div>
+          <div class="col-sm-12 mx-auto">
+              <span><p id="time">10:00</p></span>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <script type="text/javascript">
-      var timer = 600;
-      var min = 0;
-      var sec = 0;
 
+      //Global variables
+      //================
+      var activityname = "";
+      var timer = 600; //timer
+      var min = 0; //minutes
+      var sec = 0; //seconds
+
+      //On page load activities
       function onLoad(){
 
       }
 
+      //Timer functions
+      //===============
       function startTimer(){
+        $("#startTimerButton").hide();
+        $("#stopTimerButton").fadeIn("fast");
         min = parseInt(timer/60);
         sec = parseInt(timer%60);
 
         if (timer < 1){
+          $("#startTimerButton").fadeIn("fast");
+          $("#stopTimerButton").hide();
           window.alert("Time's up!");
+          timer = 600;
+          document.getElementById("time").innerHTML = "<b>Timer: </b>" + min.toString() +":"+ sec.toString();
         }
-        document.getElementById("time").innerHTML = "<b>Timer: </b>" + min.toString() +":"+ sec.toString();
-        timer--;
-        setTimeout(function(){
-          startTimer();
-        }, 1000);
+        else {
+          document.getElementById("time").innerHTML = "<b>Timer: </b>" + min.toString() +":"+ sec.toString();
+          timer--;
+          setTimeout(function(){
+            startTimer();
+          }, 1000);
+        }
+      }
+      function stopTimer(){
+        timer = 0;
       }
 
+      //Back button
+      //===========
       var peji = 0;
       function bakkuBotan(){
         if (peji == 0){
@@ -197,12 +256,18 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
+          $("#timerdisplay").hide();
+          $("#mood").hide();
           peji = 0;
+          activityname = "";
         }
       }
 
+      //Changing pages
+      //==============
       function pejiKawatta(x){
         switch(x){
+          //Excercising
           case 1:
           $("#activitymenu").hide();
           $("#exercise").fadeIn("fast");
@@ -213,9 +278,12 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 1;
+          activityname = "Excercising";
           break;
-
+          //Reaching Out
           case 2:
           $("#activitymenu").hide();
           $("#exercise").hide();
@@ -226,9 +294,12 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 2;
+          activityname = "Reach Out";
           break;
-
+          //Hobby
           case 3:
           $("#activitymenu").hide();
           $("#exercise").hide();
@@ -239,9 +310,12 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 3;
+          activityname = "Hobby";
           break;
-
+          //Meditation
           case 4:
           $("#activitymenu").hide();
           $("#exercise").hide();
@@ -252,9 +326,12 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 4;
+          activityname = "Mindful Meditation";
           break;
-
+          //Helping
           case 5:
           $("#activitymenu").hide();
           $("#exercise").hide();
@@ -265,9 +342,12 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 5;
+          activityname = "Help Others";
           break;
-
+          //Gratitude
           case 6:
           $("#activitymenu").hide();
           $("#exercise").hide();
@@ -278,9 +358,12 @@
           $("#gratitude").fadeIn("fast");
           $("#socialize").hide();
           $("#chores").hide();
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 6;
+          activityname = "Practice Gratitude";
           break;
-
+          //Socialize
           case 7:
           $("#activitymenu").hide();
           $("#exercise").hide();
@@ -291,9 +374,12 @@
           $("#gratitude").hide();
           $("#socialize").fadeIn("fast");
           $("#chores").hide();
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 7;
+          activityname = "Socialize";
           break;
-
+          //Chores
           case 8:
           $("#activitymenu").hide();
           $("#exercise").hide();
@@ -304,12 +390,22 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").fadeIn("fast");
+          $("#timerdisplay").fadeIn("fast");
+          $("#mood").fadeIn("fast");
           peji = 8;
+          activityname = "Chores";
           break;
-
+          //Error catching
           default:
-          console.log("Something wrong with the switch case or page assignment.")
+            console.log("Something wrong with the switch case or page assignment.");
+            window.location.replace("activities.html");
+            break;
         }
+
+        //Before and after mood thingy
+        //============================
+
+
       }
     </script>
 
