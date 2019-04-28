@@ -30,6 +30,19 @@
         display: none;
       }
 
+      .card{
+        max-width: 110px;
+        height: 150px;
+        padding:10px;
+        display:block;
+        margin: 5px;
+      }
+
+      .card-title {
+        text-align: center;
+        font-size: 0.5rem;
+      }
+
 
     </style>
   </head>
@@ -57,14 +70,56 @@
       <div class="container-fluid">
 
         <!-- Menu -->
-        <div class="row text-center padding" id ="menu">
-          <div class="col-sm-12 mx-auto">
-            <button class="btn btn-info" onclick="pejiKawatta(1)"><img src = "1.png" style="width:20px;height:20px;"> What is Depression?</a></button><br><br>
-            <button class="btn btn-info" onclick="pejiKawatta(2)"><img src = "2.png" style="width:20px;height:20px;"> Symptoms</a></button><br><br>
-            <button class="btn btn-info" onclick="pejiKawatta(3)"><img src = "3.png" style="width:20px;height:20px;"> Types</a></button><br><br>
-            <button class="btn btn-info" onclick="pejiKawatta(4)"><img src = "4.png" style="width:20px;height:20px;"> Causes</a></button><br><br>
-            <button class="btn btn-info" onclick="pejiKawatta(5)"><img src = "5.png" style="width:20px;height:20px;"> Treatments</a></button>
+        <div class="container" id ="menu">
+          <div class="row padding">
+            <div class="col-l-6 mx-auto">
+              <div class="card" onclick="pejiKawatta(1)">
+                <img class="card-img-top" src="1.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">What is Depression?</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-l-6 mx-auto">
+              <div class="card" onclick="pejiKawatta(2)">
+                <img class="card-img-top" src="2.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Symptoms</h5>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div class="row padding">
+            <div class="col-l-6 mx-auto">
+              <div class="card" onclick="pejiKawatta(3)">
+                <img class="card-img-top" src="3.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Types</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-l-6 mx-auto">
+              <div class="card" onclick="pejiKawatta(4)">
+                <img class="card-img-top" src="4.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Causes</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row padding">
+            <div class="col-l-12 mx-auto">
+              <div class="card" onclick="pejiKawatta(5)">
+                <img class="card-img-top" src="5.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Treatments</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- What is depression -->
