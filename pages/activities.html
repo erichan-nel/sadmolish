@@ -23,13 +23,6 @@
         margin-bottom: 10px;
         width: 200px;
       }
-      #mood{
-        max-width: 320px;
-      }
-      #mood img {
-        width: 100%;
-        height: auto\9;
-      }
 
       ul,li{
         list-style-type: none;
@@ -38,8 +31,13 @@
         padding:0;
       }
 
-      #exercise, #reachout, #hobby, #meditation, #helping, #gratitude, #socialize, #chores, #timerdisplay, #mood, #stopTimerButton{
+      #exercise, #reachout, #hobby, #meditation, #helping, #gratitude, #socialize, #chores, #history, #timerdisplay, #mood, #stopTimerButton{
         display: none;
+      }
+
+      table,tr,td{
+        border: 1px solid black;
+        padding: 5px;
       }
 
     </style>
@@ -70,7 +68,10 @@
       <div class="container-fluid" id ="activitymenu">
         <div class="row padding text-center">
           <div class="col-sm-12 mx-auto">
-            <button type="button" class="btn btn-secondary">Random</button>
+            <button type="button" class="btn btn-secondary" onclick="randomAct()">Random</button>
+          </div>
+          <div class="col-sm-12 mx-auto" style="margin-top:10px;">
+            <button type="button" class="btn btn-secondary" onclick="pejiKawatta(9)">History</button>
           </div>
         </div>
         <hr>
@@ -86,6 +87,20 @@
               <li><button class="btn btn-info" onclick="pejiKawatta(7)">Socialize</button></li>
               <li><button class="btn btn-info" onclick="pejiKawatta(8)">Chores</button></li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="history">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <button class="btn btn-info" type="button" name="clearhistory" onclick="clearHistory()">Clear History</button>
+          </div>
+        </div>
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <table id="tablerecord" style ="width:100%;">
+            </table>
           </div>
         </div>
       </div>
@@ -144,7 +159,7 @@
         <div class="row padding text-center">
           <div class="col-sm-12 mx-auto">
             <p class="text-justify">List out the things that you truly grateful for. A simple activity that doesn't require much movements as it is but a simple act of self-reflection.</p>
-            <p class="text-justify">da</p>
+            <p class="text-justify">Think of the people you've met in your life, the things you received and the things that you've lost. Look at the brighter side of all things, you'll be surprised with how blessed you are without you ever realising.</p>
           </div>
         </div>
       </div>
@@ -152,7 +167,8 @@
       <div class="container-fluid" id="socialize">
         <div class="row padding text-center">
           <div class="col-sm-12 mx-auto">
-            <p class="text-justify">Supposed to be texts here.</p>
+            <p class="text-justify">Humans are inherently social creatures. We live and survive by working together as a collective species. Simply by chatting up and having a nice conversation with fellow people can certainly put us into a better mood.</p>
+            <p class="text-justify">Get into a talking group and socialise. It can be either in real life setting or virtually online, preferrably the former. Who knows, you may make new friends of the same interests.</p>
           </div>
         </div>
       </div>
@@ -160,27 +176,45 @@
       <div class="container-fluid" id="chores">
         <div class="row padding text-center">
           <div class="col-sm-12 mx-auto">
-            <p class="text-justify">Supposed to be texts here.</p>
+            <p class="text-justify">Some people consider chores as hassles. Little do we know that doing chorse could give us a sense of completion and it would be a lie to say it ain't a satisfying feeling.</p>
+            <p class="text-justify">If there's trash, clean up and throw it out. If there are dirty dishes, wash it and organise the dishes. Simple chores could come a long way in improving your mood.</p>
           </div>
         </div>
       </div>
 
-      <div class="container-fluid" >
-        <div class="row padding text-center" id = "mood">
-          <div class="col">
-            <img src="../img/reallysad.png" id="mood1" class="img-fluid" onclick = "setMood(1)">
+      <div class="container-fluid" id="mood">
+        <div class="row padding text-center">
+          <div class="col-sm-6 mx-auto">
+            <p>Before activity</p>
           </div>
-          <div class="col">
-            <img src="../img/sad.png" id="mood2" class="img-fluid" onclick = "setMood(2)">
+          <div class="col-sm-6 mx-auto">
+            <select id="beforeactivity" name="beforeactivity">
+              <option value = "Really Sad">Really Sad</option>
+              <option value = "Sad">Sad</option>
+              <option value = "Normal">Normal</option>
+              <option value = "Happy">Happy</option>
+              <option value = "Really Happy">Really Happy</option>
+            </select>
           </div>
-          <div class="col">
-            <img src="../img/normal.png" id="mood3" class="img-fluid" onclick = "setMood(3)">
+        </div>
+        <div class="row padding text-center">
+          <div class="col-sm-6 mx-auto">
+            <p>After activity</p>
           </div>
-          <div class="col">
-            <img src="../img/happy.png" id="mood4" class="img-fluid" onclick = "setMood(4)">
+          <div class="col-sm-6 mx-auto">
+            <select id="afteractivity" name="afteractivity">
+              <option value = "Really Sad">Really Sad</option>
+              <option value = "Sad">Sad</option>
+              <option value = "Normal">Normal</option>
+              <option value = "Happy">Happy</option>
+              <option value = "Really Happy">Really Happy</option>
+            </select>
           </div>
-          <div class="col">
-            <img src="../img/reallyhappy.png" id="mood5" class="img-fluid" onclick = "setMood(5)">
+        </div>
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <br>
+            <button id="recordAct" class="btn btn-primary" type="button" name="recordAct" onclick="recordAct()">SAVE</button>
           </div>
         </div>
       </div>
@@ -203,14 +237,34 @@
 
       //Global variables
       //================
-      var activityname = "";
+      var activityname = ""; //activity container
       var timer = 600; //timer
       var min = 0; //minutes
       var sec = 0; //seconds
+      var today; //today's date
+      var dd, mm, yy, dte; //date containers
+      var bfmood; //mood before activity
+      var afmood; //mood after activity
+
 
       //On page load activities
       function onLoad(){
+        today = new Date();
+        dd = today.getDate();
+        mm = today.getMonth() + 1;
+        yy = today.getFullYear();
+        dte = today.toDateString();
 
+        //Displaying diary pages
+        //======================
+        var storedValues = localStorage.getItem("activityrecord"); //Gets the stored table.
+        if (storedValues == null){ //If the table is empty or first time use.
+          storedValues = ""; //Display nothing
+        }
+        else{
+          var list = document.querySelector("#tablerecord"); //Select table with ID = tablerecord.
+          list.innerHTML += storedValues; //Add the content of the stored table into the selected table.
+        }
       }
 
       //Timer functions
@@ -240,6 +294,13 @@
         timer = 0;
       }
 
+      //Random activity
+      //===============
+      function randomAct(){
+        var x = Math.floor(Math.random() * 8) + 1;
+        pejiKawatta(x);
+      }
+
       //Back button
       //===========
       var peji = 0;
@@ -259,8 +320,19 @@
           $("#chores").hide();
           $("#timerdisplay").hide();
           $("#mood").hide();
+          $("#history").hide();
           peji = 0;
           activityname = "";
+        }
+      }
+
+      function clearHistory(){
+        var r = confirm("Do you want to delete the records?");
+        if (r){
+          localStorage.removeItem("activityrecord");
+          window.location.replace("activities.html");
+        }
+        else if (!r){
         }
       }
 
@@ -279,7 +351,7 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 1;
           activityname = "Excercising";
@@ -295,7 +367,7 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 2;
           activityname = "Reach Out";
@@ -311,7 +383,7 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 3;
           activityname = "Hobby";
@@ -327,7 +399,7 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 4;
           activityname = "Mindful Meditation";
@@ -343,7 +415,7 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").hide();
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 5;
           activityname = "Help Others";
@@ -359,7 +431,7 @@
           $("#gratitude").fadeIn("fast");
           $("#socialize").hide();
           $("#chores").hide();
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 6;
           activityname = "Practice Gratitude";
@@ -375,7 +447,7 @@
           $("#gratitude").hide();
           $("#socialize").fadeIn("fast");
           $("#chores").hide();
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 7;
           activityname = "Socialize";
@@ -391,10 +463,26 @@
           $("#gratitude").hide();
           $("#socialize").hide();
           $("#chores").fadeIn("fast");
-          $("#timerdisplay").fadeIn("fast");
+          //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
           peji = 8;
           activityname = "Chores";
+          break;
+          //History
+          case 9:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          //$("#timerdisplay").hide();
+          $("#history").fadeIn("fast");
+          peji = 9;
+          activityname = "Checking history";
           break;
           //Error catching
           default:
@@ -402,12 +490,32 @@
             window.location.replace("activities.html");
             break;
         }
-
-        //Before and after mood thingy
-        //============================
-
-
       }
+
+      //Record activity
+      //===============
+      function recordAct(){
+        var r = confirm("Done with your activity?"); //Ask if the user are done with their activity.
+        if (r){ //If they accept
+          //Recording to activity pages
+          //========================
+          var date = localStorage.getItem("today"); //Get today's date.
+          bfmood = $("#beforeactivity option:selected").text();
+          console.log("Before activity: "+bfmood);
+          afmood = $("#afteractivity option:selected").text();
+          console.log("After activity: "+afmood);
+          var kaku = "<tr><td>"+date+"</td><td ><b>Activity:</b> "+activityname+"<br><b>Before activity: </b>"+bfmood+"<br><b>After activity: </b>"+afmood+"</td></tr>";
+          $("#tablerecord").prepend(kaku); //Adding the new entry above previous entries in table with ID = tablerecord using prepend.
+          var m = document.querySelector("#tablerecord"); //Select the table with ID = tablerecord
+          window.localStorage.activityrecord = m.innerHTML; //Save the selected table into stored page table.
+          //recordAvg(); //Execute the average mood per month function.
+          bakkuBotan();
+          pejiKawatta(9); //Show the pages page.
+        }
+        else if (!r){ //If not accept, do nothing and close dialog.
+        }
+      }
+
     </script>
 
     <!-- Optional JavaScript -->
