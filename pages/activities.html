@@ -31,7 +31,7 @@
         padding:0;
       }
 
-      #exercise, #reachout, #hobby, #meditation, #helping, #gratitude, #socialize, #chores, #history, #timerdisplay, #mood, #stopTimerButton{
+      #exercise, #reachout, #hobby, #meditation, #helping, #gratitude, #socialize, #chores, #history, #timerdisplay, #customActivity, #mood, #stopTimerButton{
         display: none;
       }
 
@@ -72,6 +72,9 @@
           </div>
           <div class="col-sm-12 mx-auto" style="margin-top:10px;">
             <button type="button" class="btn btn-secondary" onclick="pejiKawatta(9)">History</button>
+          </div>
+          <div class="col-sm-12 mx-auto" style="margin-top:10px;">
+            <button type="button" class="btn btn-secondary" onclick="pejiKawatta(10)">Custom Activity</button>
           </div>
         </div>
         <hr>
@@ -231,6 +234,55 @@
         </div>
       </div>
 
+      <div class="container-fluid" id="customActivity">
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <h5>Custom Activity</h5>
+          </div>
+        </div>
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            Activity Name: <input type="text" id="cActName">
+          </div>
+        </div>
+        <div class="row padding text-center">
+          <div class="col-sm-6 mx-auto">
+            <br>
+            <p>Before activity</p>
+          </div>
+          <div class="col-sm-6 mx-auto">
+            <select id="beforeactivity" name="beforeactivity">
+              <option value = "Really Sad">Really Sad</option>
+              <option value = "Sad">Sad</option>
+              <option value = "Normal">Normal</option>
+              <option value = "Happy">Happy</option>
+              <option value = "Really Happy">Really Happy</option>
+            </select>
+          </div>
+        </div>
+        <div class="row padding text-center">
+          <div class="col-sm-6 mx-auto">
+            <br>
+            <p>After activity</p>
+          </div>
+          <div class="col-sm-6 mx-auto">
+            <select id="afteractivity" name="afteractivity">
+              <option value = "Really Sad">Really Sad</option>
+              <option value = "Sad">Sad</option>
+              <option value = "Normal">Normal</option>
+              <option value = "Happy">Happy</option>
+              <option value = "Really Happy">Really Happy</option>
+            </select>
+          </div>
+        </div>
+        <div class="row padding text-center">
+          <div class="col-sm-12 mx-auto">
+            <br>
+            <button id="recordAct" class="btn btn-primary" type="button" name="recordAct" onclick="recorCustomdAct()">SAVE</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <script type="text/javascript">
@@ -321,6 +373,7 @@
           $("#timerdisplay").hide();
           $("#mood").hide();
           $("#history").hide();
+          $("#customActivity").hide();
           peji = 0;
           activityname = "";
         }
@@ -353,6 +406,7 @@
           $("#chores").hide();
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 1;
           activityname = "Excercising";
           break;
@@ -369,6 +423,7 @@
           $("#chores").hide();
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 2;
           activityname = "Reach Out";
           break;
@@ -385,6 +440,7 @@
           $("#chores").hide();
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 3;
           activityname = "Hobby";
           break;
@@ -401,6 +457,7 @@
           $("#chores").hide();
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 4;
           activityname = "Mindful Meditation";
           break;
@@ -417,6 +474,7 @@
           $("#chores").hide();
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 5;
           activityname = "Help Others";
           break;
@@ -433,6 +491,7 @@
           $("#chores").hide();
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 6;
           activityname = "Practice Gratitude";
           break;
@@ -449,6 +508,7 @@
           $("#chores").hide();
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 7;
           activityname = "Socialize";
           break;
@@ -465,6 +525,7 @@
           $("#chores").fadeIn("fast");
           //$("#timerdisplay").fadeIn("fast");
           $("#mood").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 8;
           activityname = "Chores";
           break;
@@ -481,8 +542,26 @@
           $("#chores").hide();
           //$("#timerdisplay").hide();
           $("#history").fadeIn("fast");
+          $("#customActivity").hide();
           peji = 9;
           activityname = "Checking history";
+          break;
+          //Custom Activity
+          case 10:
+          $("#activitymenu").hide();
+          $("#exercise").hide();
+          $("#reachout").hide();
+          $("#hobby").hide();
+          $("#meditation").hide();
+          $("#helping").hide();
+          $("#gratitude").hide();
+          $("#socialize").hide();
+          $("#chores").hide();
+          //$("#timerdisplay").hide();
+          $("#history").hide();
+          $("#customActivity").fadeIn("fast");
+          peji = 10;
+          activityname = "Custom Activity";
           break;
           //Error catching
           default:
@@ -515,6 +594,32 @@
         else if (!r){ //If not accept, do nothing and close dialog.
         }
       }
+
+      //Record Custom Activity
+      //======================
+      function recorCustomdAct(){
+        var r = confirm("Done with your activity?"); //Ask if the user are done with their activity.
+        if (r){ //If they accept
+          //Recording to activity pages
+          //========================
+          var date = localStorage.getItem("today"); //Get today's date.
+          bfmood = $("#beforeactivity option:selected").text();
+          console.log("Before activity: "+bfmood);
+          afmood = $("#afteractivity option:selected").text();
+          console.log("After activity: "+afmood);
+          var activityname = $("#cActName").val();
+          var kaku = "<tr><td>"+date+"</td><td ><b>Activity:</b> "+activityname+"<br><b>Before activity: </b>"+bfmood+"<br><b>After activity: </b>"+afmood+"</td></tr>";
+          $("#tablerecord").prepend(kaku); //Adding the new entry above previous entries in table with ID = tablerecord using prepend.
+          var m = document.querySelector("#tablerecord"); //Select the table with ID = tablerecord
+          window.localStorage.activityrecord = m.innerHTML; //Save the selected table into stored page table.
+          //recordAvg(); //Execute the average mood per month function.
+          bakkuBotan();
+          pejiKawatta(9); //Show the pages page.
+        }
+        else if (!r){ //If not accept, do nothing and close dialog.
+        }
+      }
+
 
     </script>
 
