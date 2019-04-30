@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "com.phonegap.example"
+    id          = "com.plums.sadmolish"
     versionCode = "10"
-    version     = "0.0.2" >
+    version     = "0.0.5" >
 
 <!-- versionCode is optional and Android only -->
 
@@ -18,6 +18,9 @@
   </author>
   <icon src = "icon.png"/>
   <access origin="*" />
+
+  <preference name="orientation" value="portrait" />
+
   <plugin name="cordova-plugin-whitelist" version="1" />
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
