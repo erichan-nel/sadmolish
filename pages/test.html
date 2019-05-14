@@ -52,7 +52,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="firstLoad()">
 
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -128,13 +128,12 @@
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-xs-6">
             <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(3)">Back</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(3)">Next</button>
+            <button type="button" id="btn0" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(3)">Next</button>
           </div>
         </div>
       </div>
@@ -158,7 +157,7 @@
             <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(4)">Back</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(4)">Next</button>
+            <button type="button" id="btn1" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(4)">Next</button>
           </div>
         </div>
       </div>
@@ -182,7 +181,7 @@
             <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(5)">Back</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(5)">Next</button>
+            <button type="button" id="btn2" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(5)">Next</button>
           </div>
         </div>
       </div>
@@ -206,7 +205,7 @@
             <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(6)">Back</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(6)">Next</button>
+            <button type="button" id="btn3" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(6)">Next</button>
           </div>
         </div>
       </div>
@@ -230,7 +229,7 @@
             <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(7)">Back</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(7)">Next</button>
+            <button type="button" id="btn4" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(7)">Next</button>
           </div>
         </div>
       </div>
@@ -254,7 +253,7 @@
             <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(8)">Back</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(8)">Next</button>
+            <button type="button" id="btn5" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(8)">Next</button>
           </div>
         </div>
       </div>
@@ -277,7 +276,7 @@
             <button type="button" name="button" class="btn btn-outline-secondary" onclick="maePeji(9)">Back</button>
           </div>
           <div class="col-xs-6">
-            <button type="button" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(9)">Result</button>
+            <button type="button" id="btn6" name="button" class="btn btn-outline-secondary" onclick="tsugiPeji(9)">Result</button>
           </div>
         </div>
       </div>
@@ -329,7 +328,14 @@
       var ans = new Array(); //create new array for question's answer slot
 
       function firstLoad(){
-
+        $("#btn0").attr("disable",true);
+        document.getElementById("btn0").disabled=true;
+        document.getElementById("btn1").disabled=true;
+        document.getElementById("btn2").disabled=true;
+        document.getElementById("btn3").disabled=true;
+        document.getElementById("btn4").disabled=true;
+        document.getElementById("btn5").disabled=true;
+        document.getElementById("btn6").disabled=true;
       }
 
       function maePeji(x){
@@ -405,6 +411,10 @@
     	     document.getElementById("depression").innerHTML = "Extremely severe";
            document.getElementById("advice").innerHTML = "<b>Remarks</b>: Your results suggest that you may be suffering from extremely severe depression. While this is not a diagnostic test, people who scored similar to you typically receive a diagnosis of major depression and have sought professional treatment for this disorder. It would likely be beneficial for you to consult your doctor or a trained mental professional immediately. <a href='entertainment.html'>Entertain yourself</a>";
         }
+
+        var a = "btn";
+        a = a+x;
+        document.getElementById(a).disabled=false;
 
       }
 
